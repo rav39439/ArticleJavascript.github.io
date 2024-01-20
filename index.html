@@ -206,7 +206,7 @@ function gi() {
     if (document.getElementById('goBack') != null) {
         let t = JSON.parse((document.getElementById('goBack').innerText).trim())
 
-        document.getElementById('Subject').value = t
+       // document.getElementById('Subject').value = t
 
     }
     let updatedOptions = JSON.parse(document.getElementById('ndata').innerText)
@@ -216,7 +216,6 @@ function gi() {
         console.log('all')
     }
     let a = JSON.parse(document.getElementById('ndata').innerText)
-    console.log(a)
     updatedData = a
     let b = checkData(a)
     globalLength = a.length
@@ -504,6 +503,7 @@ function attachEventListeners() {
                         let f=document.getElementById('grade').value
                         let p=document.getElementById('Subject').value
                         let j=document.getElementById('topicnames').value
+                        console.log(p)
                         let pdata={
                             grade:f,
                             subject:p,
