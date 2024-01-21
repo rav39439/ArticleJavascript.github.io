@@ -28,10 +28,20 @@ function gi() {
     let html = ``
     let topicDetailsWords = ''
     goBackData = JSON.parse((document.getElementById('goBack').innerText).trim())
+    if(!goBackData){
+        goBackData='default'
+    }
     if (document.getElementById('gr') != null) {
         let gr = JSON.parse((document.getElementById('gr').innerText).trim())
         document.getElementById('grade').value = gr
 
+    } else{
+        document.getElementById('grade').value = 'default'
+
+    }
+
+    if(!document.getElementById('tp')){
+        document.getElementById('tp').innerText='default'
     }
     if (document.getElementById('tp') != null) {
         let tp = JSON.parse((document.getElementById('tp').innerText).trim())
@@ -41,10 +51,10 @@ function gi() {
 
     if (document.getElementById('goBack') != null) {
         let t = JSON.parse((document.getElementById('goBack').innerText).trim())
-
         document.getElementById('Subject').value = t
 
     }
+
     let updatedOptions = JSON.parse(document.getElementById('ndata').innerText)
     if (goBackData.trim() != 'All') {
         updateTopics(updatedOptions, document.getElementById('topicnames').value)
@@ -137,7 +147,7 @@ function getData(event) {
     console.log(event.target.value)
     document.getElementById('articles').innerHTML = ``
     $.ajax({
-        url: "http://localhost:8700/docdata",
+        url: "https://articleapiapp.onrender.com/docdata",
         method: "POST",
         data: { subject: event.target.value },
         success: function (response) {
@@ -212,8 +222,6 @@ function updateTopics(alltopics, topic) {
         });
         document.getElementById('topicnames').value = topic
     }
-
-
 }
 
 function attachEventListeners() {
@@ -228,7 +236,7 @@ function attachEventListeners() {
 
             }
             $.ajax({
-                url: "http://localhost:8700/fetchPage",
+                url: "https://articleapiapp.onrender.com/fetchPage",
                 method: "POST",
                 data: { articlevalue: updata },
                 success: function (response) {
@@ -303,13 +311,6 @@ function attachEventListeners() {
                     </div>
                 </div>
                 </div>
-
-
-
-
-
-
-           
             <div class="container  " style="width: 100%;  margin-bottom:40px;margin-top:20px" id="lluu">
                 <button class="btn btn-primary" style=" border-radius:17px;">
                  <a href="#" style="text-decoration:none;color:black"id="getInitial" >
@@ -347,7 +348,7 @@ function attachEventListeners() {
                         }
 
                         $.ajax({
-                            url: `http://localhost:8700/goBack`,
+                            url: `https://articleapiapp.onrender.com/goBack`,
                             method: "POST",
                             data:pdata,
                             success: function (response) {
@@ -497,7 +498,7 @@ function useArr(d) {
 
 function getAlldata() {
     $.ajax({
-        url: "http://localhost:8700/getAll",
+        url: "https://articleapiapp.onrender.com/getAll",
         method: "POST",
         // data: { subject: goBackData },
         success: function (response) {
@@ -524,7 +525,7 @@ function getTopic(event) {
     lastSavedGrade = document.getElementById('grade').value
     document.getElementById('articles').innerHTML = ``
     $.ajax({
-        url: "http://localhost:8700/docdata",
+        url: "https://articleapiapp.onrender.com/docdata",
         method: "POST",
         data: { grade: document.getElementById('grade').value, subject: document.getElementById('Subject').value, topic: document.getElementById('topicnames').value },
         success: function (response) {
@@ -646,7 +647,7 @@ p {
 
 function loadInitialData() {
     $.ajax({
-        url: "http://localhost:8700/",
+        url: "https://articleapiapp.onrender.com/",
         method: "GET",
         data: {},
         success: function (response) {

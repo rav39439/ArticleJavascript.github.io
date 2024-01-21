@@ -192,22 +192,32 @@ function gi() {
     let html = ``
     let topicDetailsWords = ''
     goBackData = JSON.parse((document.getElementById('goBack').innerText).trim())
+    if(!goBackData){
+        goBackData='default'
+    }
     if (document.getElementById('gr') != null) {
         let gr = JSON.parse((document.getElementById('gr').innerText).trim())
         document.getElementById('grade').value = gr
-
     }
+    else{
+        document.getElementById('grade').value = 'default'
+    }
+
     if (document.getElementById('tp') != null) {
         let tp = JSON.parse((document.getElementById('tp').innerText).trim())
         document.getElementById('topicnames').value = tp
-
     }
-
+    else{
+        document.getElementById('topicnames').value = 'default'
+    }
+  
     if (document.getElementById('goBack') != null) {
         let t = JSON.parse((document.getElementById('goBack').innerText).trim())
 
        // document.getElementById('Subject').value = t
 
+    }else{
+        document.getElementById('Subject').value = 'default'
     }
     let updatedOptions = JSON.parse(document.getElementById('ndata').innerText)
     if (goBackData.trim() != 'All') {
