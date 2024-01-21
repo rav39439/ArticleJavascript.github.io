@@ -216,9 +216,12 @@ function gi() {
     let timeago
     let html = ``
     let topicDetailsWords = ''
-    goBackData = JSON.parse((document.getElementById('goBack').innerText).trim())
-    if(!goBackData){
-        goBackData='default'
+    if(document.getElementById('goBack').innerText!='undefined'){
+        goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
+    }
+    else{
+        goBackData ='default'
+
     }
     
     if (document.getElementById('gr') != null && document.getElementById('gr').innerText!='undefined') {
