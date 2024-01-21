@@ -216,7 +216,8 @@ function gi() {
     let timeago
     let html = ``
     let topicDetailsWords = ''
-    alert(document.getElementById('goBack').innerText)
+    console.log('value')
+    console.log(document.getElementById('goBack').innerText)
     if(document.getElementById('goBack')){
         if(document.getElementById('goBack').innerText!='undefined' && document.getElementById('goBack').innerText!=' '){
         goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
