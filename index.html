@@ -375,7 +375,7 @@ function updateTopics(alltopics, topic) {
     selectElement1.innerHTML = "";
     const optiond1 = document.createElement("option");
     optiond1.value = 'default'
-    optiond1.textContent = '-----select your topic-----';
+    optiond1.textContent = 'select your topic';
     // optiond1.selected = true
     selectElement1.appendChild(optiond1);
     if (alltopics.length > 0) {
@@ -446,7 +446,7 @@ function attachEventListeners() {
                         <div style="display:grid; grid-template-columns: 60% 20% 20%; gap: 30px;">
                             <select name="grade" style=" border-radius:10px;" id="grade" class="form-control"
                                 onchange="getTopic(event)">
-                                <option value="default" selected>---select your level----</option>
+                                <option value="default" selected>select your level</option>
                                 <option value="8">class 8</option>
                                 <option value="5">class 5</option>
                                 <option value="9">class 9</option>
@@ -456,7 +456,7 @@ function attachEventListeners() {
                 
                             <select name="Subjects" style=" border-radius:10px;" id="Subject" class="form-control"
                                 onchange="getTopic(event)">
-                                <option value="default" selected>---select a subject---</option>
+                                <option value="default" selected>select a subject</option>
                                 <option value="All">All</option>
                                 <option value="History">History</option>
                                 <option value="Geography">Geography</option>
@@ -466,7 +466,7 @@ function attachEventListeners() {
                 
                             <select name="topicnames" style=" border-radius:10px;" id="topicnames" class="form-control"
                                 onchange="getTopic(event)">
-                                <option value="default" selected>---select your topic ----</option>
+                                <option value="default" selected>select your topic</option>
                                 <option value="<%= elem.topic %>">
                                 </option>
                             </select>
