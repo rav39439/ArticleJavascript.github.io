@@ -51,6 +51,7 @@ function gi() {
 
     if (document.getElementById('goBack') != null) {
         let t = JSON.parse((document.getElementById('goBack').innerText).trim())
+        console.log(t)
         document.getElementById('Subject').value = t
 
     }
@@ -145,9 +146,11 @@ function checkData(d) {
 function getData(event) {
     goBackData = event.target.value
     console.log(event.target.value)
+    // alert("ddd")
+
     document.getElementById('articles').innerHTML = ``
     $.ajax({
-        url: "https://articleapiapp.onrender.com/docdata",
+        url: "http://localhost:8700/docdata",
         method: "POST",
         data: { subject: event.target.value },
         success: function (response) {
@@ -210,7 +213,7 @@ function updateTopics(alltopics, topic) {
     selectElement1.innerHTML = "";
     const optiond1 = document.createElement("option");
     optiond1.value = 'default'
-    optiond1.textContent = '-----select your topic-----';
+    optiond1.textContent = 'select your topic';
     // optiond1.selected = true
     selectElement1.appendChild(optiond1);
     if (alltopics.length > 0) {
@@ -235,10 +238,20 @@ function attachEventListeners() {
                 updata = updatedData[i]
 
             }
+
+            lastSavedTopic = document.getElementById('topicnames').value
+            lastSavedsubject = document.getElementById('Subject').value
+
+            lastSavedGrade = document.getElementById('grade').value
+            let d={
+                subject:lastSavedsubject,
+                topic:lastSavedTopic,
+                grade:lastSavedGrade
+            }
             $.ajax({
-                url: "https://articleapiapp.onrender.com/fetchPage",
+                url: "http://localhost:8700/fetchPage",
                 method: "POST",
-                data: { articlevalue: updata },
+                data: { articlevalue: updata,privi:d},
                 success: function (response) {
                     let currentIndex = 1
                     let numberofbuttons = response.articledata.Text.length
@@ -279,7 +292,7 @@ function attachEventListeners() {
                         <div style="display:grid; grid-template-columns: 60% 20% 20%; gap: 30px;">
                             <select name="grade" style=" border-radius:10px;" id="grade" class="form-control"
                                 onchange="getTopic(event)">
-                                <option value="default" selected>---select your level----</option>
+                                <option value="default" selected>select your level</option>
                                 <option value="8">class 8</option>
                                 <option value="5">class 5</option>
                                 <option value="9">class 9</option>
@@ -289,7 +302,7 @@ function attachEventListeners() {
                 
                             <select name="Subjects" style=" border-radius:10px;" id="Subject" class="form-control"
                                 onchange="getTopic(event)">
-                                <option value="default" selected>---select a subject---</option>
+                                <option value="default" selected>select a subject</option>
                                 <option value="All">All</option>
                                 <option value="History">History</option>
                                 <option value="Geography">Geography</option>
@@ -299,7 +312,7 @@ function attachEventListeners() {
                 
                             <select name="topicnames" style=" border-radius:10px;" id="topicnames" class="form-control"
                                 onchange="getTopic(event)">
-                                <option value="default" selected>---select your topic ----</option>
+                                <option value="default" selected>select your topic</option>
                                 <option value="<%= elem.topic %>">
                                 </option>
                             </select>
@@ -348,7 +361,7 @@ function attachEventListeners() {
                         }
 
                         $.ajax({
-                            url: `https://articleapiapp.onrender.com/goBack`,
+                            url: `http://localhost:8700/goBack`,
                             method: "POST",
                             data:pdata,
                             success: function (response) {
@@ -525,7 +538,7 @@ function getTopic(event) {
     lastSavedGrade = document.getElementById('grade').value
     document.getElementById('articles').innerHTML = ``
     $.ajax({
-        url: "https://articleapiapp.onrender.com/docdata",
+        url: "http://localhost:8700/docdata",
         method: "POST",
         data: { grade: document.getElementById('grade').value, subject: document.getElementById('Subject').value, topic: document.getElementById('topicnames').value },
         success: function (response) {

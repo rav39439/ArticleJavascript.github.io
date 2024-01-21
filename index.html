@@ -104,6 +104,8 @@
 
 <body>
 
+    <!-- <h1 >Articles</h1> -->
+
     <div id="majordata" style="width: 100%;">
         <div id="ndata" style="display: none;">
         </div>
@@ -123,7 +125,7 @@
             <div style="display:grid; grid-template-columns: 60% 20% 20%; gap: 30px;">
                 <select name="grade" style=" border-radius:10px;" id="grade" class="form-control"
                     onchange="getTopic(event)">
-                    <option value="default" selected>---select your level----</option>
+                    <option value="default" selected>select your level</option>
                     <option value="8">class 8</option>
                     <option value="5">class 5</option>
                     <option value="9">class 9</option>
@@ -133,7 +135,7 @@
     
                 <select name="Subjects" style=" border-radius:10px;" id="Subject" class="form-control"
                     onchange="getTopic(event)">
-                    <option value="default" selected>---select a subject---</option>
+                    <option value="default" selected>select a subject</option>
                     <option value="All">All</option>
                     <option value="History">History</option>
                     <option value="Geography">Geography</option>
@@ -143,7 +145,7 @@
     
                 <select name="topicnames" style=" border-radius:10px;" id="topicnames" class="form-control"
                     onchange="getTopic(event)">
-                    <option value="default" selected>---select your topic ----</option>
+                    <option value="default" selected>select your topic</option>
                     <option value="<%= elem.topic %>">
                     </option>
                 </select>
@@ -175,7 +177,6 @@ let lastSavedTopic
 let currentIndex = 1
 
 let lastSavedGrade
-// location.reload();
 
 
 loadInitialData()
@@ -195,7 +196,8 @@ function gi() {
     if(!goBackData){
         goBackData='default'
     }
-    if (document.getElementById('gr') != null) {
+    
+    if (document.getElementById('gr') != null && document.getElementById('gr').innerText!='undefined') {
         let gr = JSON.parse((document.getElementById('gr').innerText).trim())
         document.getElementById('grade').value = gr
     }
@@ -203,7 +205,7 @@ function gi() {
         document.getElementById('grade').value = 'default'
     }
 
-    if (document.getElementById('tp') != null) {
+    if (document.getElementById('tp') != null && document.getElementById('tp').innerText!='undefined') {
         let tp = JSON.parse((document.getElementById('tp').innerText).trim())
         document.getElementById('topicnames').value = tp
     }
@@ -214,7 +216,7 @@ function gi() {
     if (document.getElementById('goBack') != null) {
         let t = JSON.parse((document.getElementById('goBack').innerText).trim())
 
-       // document.getElementById('Subject').value = t
+        document.getElementById('Subject').value = t
 
     }else{
         document.getElementById('Subject').value = 'default'
