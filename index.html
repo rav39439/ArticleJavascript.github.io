@@ -227,27 +227,28 @@
         let topicDetailsWords = ''
         console.log('value')
         console.log(document.getElementById('goBack').innerText)
-        // if(document.getElementById('goBack')){
-        if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != ' ') {
-            //  goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
-            try {
-                var jsonData = JSON.parse(document.getElementById('dd').innerText);
-                // Use the parsed JSON data here
-                console.log(jsonData);
-            } catch (e) {
-                // Handle the error gracefully
-                console.error('Error parsing JSON:', e);
-                goBackData = 'default'
+        if (document.getElementById('goBack') != null) {
+            if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != null) {
+                //  goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
+                try {
+                    var jsonData = JSON.parse(document.getElementById('dd').innerText);
+                    // Use the parsed JSON data here
+                    console.log(jsonData);
+                } catch (e) {
+                    // Handle the error gracefully
+                    goBackData = 'default'
+
+                    console.error('Error parsing JSON:', e);
+                }
             }
-        }
-        else {
+            else {
+                goBackData = 'default'
+
+            }
+        } else {
             goBackData = 'default'
 
         }
-        // } else{
-        //     goBackData ='default'
-
-        // }
 
 
         if (document.getElementById('gr') != null && document.getElementById('gr').innerText != 'undefined') {
