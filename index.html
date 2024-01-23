@@ -187,10 +187,10 @@
 
             </div>
         </div>
-        <!-- <div id="hj2">
+        <div id="hj2">
             <h1>WAIT LOADING....</h1>
 
-        </div> -->
+        </div>
     </div>
 </body>
 
@@ -217,7 +217,14 @@
     let lastSavedGrade
 
    async function getDataIN(){
-await loadInitialData()
+    document.getElementById('hj2').style.display='block'
+    document.getElementById('hj').style.display='none'
+
+    setTimeout(async()=>{
+        await loadInitialData()
+        document.getElementById('hj2').style.display='none'
+    document.getElementById('hj').style.display='block'
+    },10000)
     }
 
     getDataIN()
