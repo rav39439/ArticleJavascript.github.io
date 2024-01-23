@@ -302,8 +302,8 @@
             else {
                 timeago = ''
             }
-
-            html += `
+if(a){
+    html += `
 
 <a href="#" style="text-decoration:none;color:black" id=${index} >
 
@@ -326,6 +326,10 @@
 </div>
 </a>
 `
+}else{
+    `<h1> Refresh to see the Data</h1>`
+}
+           
         })
         document.getElementById('articles').innerHTML = html
         attachEventListeners()
