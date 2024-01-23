@@ -212,7 +212,7 @@
     let lastSavedGrade
 
 
-   await loadInitialData()
+    await loadInitialData()
 
     setTimeout(() => {
         gi()
@@ -226,7 +226,7 @@
         let html = ``
         let topicDetailsWords = ''
         console.log('value')
-        console.log(typeof(document.getElementById('goBack').innerText))
+        console.log(typeof (document.getElementById('goBack').innerText))
         let goBackData = 'default'
         if (document.getElementById('goBack') != null) {
             if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != null) {
@@ -302,8 +302,8 @@
             else {
                 timeago = ''
             }
-if(a){
-    html += `
+            if (a) {
+                html += `
 
 <a href="#" style="text-decoration:none;color:black" id=${index} >
 
@@ -326,10 +326,10 @@ if(a){
 </div>
 </a>
 `
-}else{
-    `<h1> Refresh to see the Data</h1>`
-}
-           
+            } else {
+                `<h1> Refresh to see the Data</h1>`
+            }
+
         })
         document.getElementById('articles').innerHTML = html
         attachEventListeners()
@@ -878,22 +878,33 @@ p {
         document.body.removeChild(fileDownload);
     }
 
-   async function loadInitialData() {
-        console.log("running")
-        $.ajax({
-            url: "https://articleapiapp.onrender.com/",
-            method: "GET",
-            data: {},
-            success: function (response) {
-                console.log(response)
-                document.getElementById('goBack').innerText = response.goback
-                document.getElementById('gr').innerText = response.grade
-                document.getElementById('tp').innerText = response.topic
-                document.getElementById('alltopics').innerText = response.alltopics.filter(d => Object.keys(d).length != 0)
-                document.getElementById('ndata').innerText = response.articles
+    async function loadInitialData() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "https://articleapiapp.onrender.com/",
+                    method: "GET",
+                    data: {},
+                    success: function (response) {
+                        console.log(response)
+                        resolve(response)
+                        document.getElementById('goBack').innerText = response.goback
+                        document.getElementById('gr').innerText = response.grade
+                        document.getElementById('tp').innerText = response.topic
+                        document.getElementById('alltopics').innerText = response.alltopics.filter(d => Object.keys(d).length != 0)
+                        document.getElementById('ndata').innerText = response.articles
 
-            }
-        })
+                    },
+                    error: function (error) {
+                        reject(error)
+                    }
+                })
+            })
+        }
+        catch (error) {
+            console.log(error)
+
+        }
     }
 
 
