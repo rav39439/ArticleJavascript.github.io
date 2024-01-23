@@ -231,7 +231,7 @@
             if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != null) {
                 //  goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
                 try {
-                    var jsonData = JSON.parse(document.getElementById('dd').innerText);
+                    var jsonData = JSON.parse(document.getElementById('goBack').innerText);
                     // Use the parsed JSON data here
                     console.log(jsonData);
                 } catch (e) {
