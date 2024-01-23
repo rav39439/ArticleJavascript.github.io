@@ -152,7 +152,7 @@
         </div>
 
 
-        <div style="width: 100%; margin-top: 20px; ">
+        <div style="width: 100%; margin-top: 20px; " id="hj">
             <div class="container " style="width: 60%;  margin-bottom:40px; border-radius:12px;">
                 <div style="display:grid; grid-template-columns: 60% 20% 20%; gap: 30px;">
                     <select name="grade" style=" border-radius:10px;" id="grade" class="form-control"
@@ -187,6 +187,10 @@
 
             </div>
         </div>
+        <!-- <div id="hj2">
+            <h1>WAIT LOADING....</h1>
+
+        </div> -->
     </div>
 </body>
 
@@ -212,14 +216,17 @@
 
     let lastSavedGrade
 
+   async function getDataIN(){
+await loadInitialData()
+    }
 
-loadInitialData()
+    getDataIN()
 
     setTimeout(() => {
         gi()
 
         getAlldata()
-    }, 3000)
+    }, 10000)
 
     function gi() {
         let goback = document.getElementById('goBack').innerText
