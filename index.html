@@ -212,7 +212,7 @@
     let lastSavedGrade
 
 
-    loadInitialData()
+   await loadInitialData()
 
     setTimeout(() => {
         gi()
@@ -226,7 +226,7 @@
         let html = ``
         let topicDetailsWords = ''
         console.log('value')
-        console.log(document.getElementById('goBack').innerText)
+        console.log(typeof(document.getElementById('goBack').innerText))
         let goBackData = 'default'
         if (document.getElementById('goBack') != null) {
             if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != null) {
@@ -238,7 +238,7 @@
                     // Handle the error gracefully
                     goBackData = 'default'
 
-                    console.error('Error parsing JSON:', e);
+                    // console.error('Error parsing JSON:', e);
                 }
             }
             else {
@@ -878,7 +878,8 @@ p {
         document.body.removeChild(fileDownload);
     }
 
-    function loadInitialData() {
+   async function loadInitialData() {
+        console.log("running")
         $.ajax({
             url: "https://articleapiapp.onrender.com/",
             method: "GET",
