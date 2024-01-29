@@ -74,10 +74,21 @@
     }
 
   /* Styling for the loader container */
-  .loader-container {
-            width: 100%;
-            text-align: center;
+     /* Styling for the spinning loader */
+     .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: auto;
             margin-top: 50vh;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     #ticker-content {}
 
@@ -192,17 +203,14 @@
             <div id="articles" class="">
 
             </div>
-        </div>
-      
-        <div id="hj2">
-            <!-- <center>
-                <h1>WAIT LOADING....</h1>
-            </center> -->
-            
-            <div class="loader-container">
-                <progress max="100" value="50"></progress>
+            <div id="hj2">
+           
+                <div class="loader mt-0"></div>
+    
             </div>
         </div>
+      
+      
         <!-- <a href="https://rav39439.github.io/ArticleJavascript.github.io/app.html">getTolink</a> -->
     </div>
 </body>
