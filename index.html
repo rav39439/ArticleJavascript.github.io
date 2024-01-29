@@ -73,6 +73,12 @@
         display: inline-block;
     }
 
+  /* Styling for the loader container */
+  .loader-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 50vh;
+        }
     #ticker-content {}
 
     .ticker-transition {
@@ -189,10 +195,13 @@
         </div>
       
         <div id="hj2">
-            <center>
+            <!-- <center>
                 <h1>WAIT LOADING....</h1>
-            </center>
-
+            </center> -->
+            
+            <div class="loader-container">
+                <progress max="100" value="50"></progress>
+            </div>
         </div>
         <!-- <a href="https://rav39439.github.io/ArticleJavascript.github.io/app.html">getTolink</a> -->
     </div>
