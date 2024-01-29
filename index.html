@@ -73,23 +73,29 @@
         display: inline-block;
     }
 
-  /* Styling for the loader container */
-     /* Styling for the spinning loader */
-     .loader {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: auto;
-            margin-top: 50vh;
+    /* Styling for the loader container */
+    /* Styling for the spinning loader */
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: auto;
+        margin-top: 50vh;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        100% {
+            transform: rotate(360deg);
         }
+    }
+
     #ticker-content {}
 
     .ticker-transition {
@@ -203,136 +209,137 @@
             <div id="articles" class="">
 
             </div>
-           
-        </div>
-        <div id="hj2">
-           
-            <div class="loader mt-0"></div>
 
         </div>
-      
+       
+
         <!-- <a href="https://rav39439.github.io/ArticleJavascript.github.io/app.html">getTolink</a> -->
+    </div>
+    <div id="hj2">
+
+        <div class="loader mt-0"></div>
+
     </div>
 </body>
 
 <script>
     // $(document).ready(function () {
 
-        let globalLength
-        let updatedData
-        let keys
-        let goBackData
-        let updateOnRefresh
-        let allArticlesData
-        let lastSavedTopic
-        let currentIndex = 1
+    let globalLength
+    let updatedData
+    let keys
+    let goBackData
+    let updateOnRefresh
+    let allArticlesData
+    let lastSavedTopic
+    let currentIndex = 1
 
-        let lastSavedGrade
+    let lastSavedGrade
 
-        async function getDataIN() {
-            document.getElementById('hj2').style.display = 'block'
-            document.getElementById('hj').style.display = 'none'
+    async function getDataIN() {
+        document.getElementById('hj2').style.display = 'block'
+        document.getElementById('hj').style.display = 'none'
 
-            setTimeout(async () => {
-                await loadInitialData()
-                document.getElementById('hj2').style.display = 'none'
-                document.getElementById('hj').style.display = 'block'
-                gi()
+        setTimeout(async () => {
+            await loadInitialData()
+            document.getElementById('hj2').style.display = 'none'
+            document.getElementById('hj').style.display = 'block'
+            gi()
 
-                getAlldata()
-            }, 2000)
-        }
+            getAlldata()
+        }, 2000)
+    }
 
-        getDataIN()
+    getDataIN()
 
-        // setTimeout(() => {
+    // setTimeout(() => {
 
-        // }, 10000)
+    // }, 10000)
 
-        function gi() {
-            let goback = document.getElementById('goBack').innerText
-            let timeago
-            let html = ``
-            let topicDetailsWords = ''
-            console.log('value')
-            console.log(typeof (document.getElementById('goBack').innerText))
-            let goBackData = 'default'
-            if (document.getElementById('goBack') != null) {
-                if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != null) {
-                    //  goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
-                    try {
-                        goBackData = JSON.parse(document.getElementById('goBack').innerText);
-                        // Use the parsed JSON data here
-                    } catch (e) {
-                        // Handle the error gracefully
-                        goBackData = 'default'
-
-                        // console.error('Error parsing JSON:', e);
-                    }
-                }
-                else {
+    function gi() {
+        let goback = document.getElementById('goBack').innerText
+        let timeago
+        let html = ``
+        let topicDetailsWords = ''
+        console.log('value')
+        console.log(typeof (document.getElementById('goBack').innerText))
+        let goBackData = 'default'
+        if (document.getElementById('goBack') != null) {
+            if (document.getElementById('goBack').innerText != 'undefined' && document.getElementById('goBack').innerText != null) {
+                //  goBackData=JSON.parse((document.getElementById('goBack').innerText).trim())
+                try {
+                    goBackData = JSON.parse(document.getElementById('goBack').innerText);
+                    // Use the parsed JSON data here
+                } catch (e) {
+                    // Handle the error gracefully
                     goBackData = 'default'
 
+                    // console.error('Error parsing JSON:', e);
                 }
-            } else {
+            }
+            else {
                 goBackData = 'default'
 
             }
+        } else {
+            goBackData = 'default'
+
+        }
 
 
-            if (document.getElementById('gr').innerText != null && document.getElementById('gr').innerText != 'undefined') {
-                let gr = JSON.parse((document.getElementById('gr').innerText).trim())
-                document.getElementById('grade').value = gr
+        if (document.getElementById('gr').innerText != null && document.getElementById('gr').innerText != 'undefined') {
+            let gr = JSON.parse((document.getElementById('gr').innerText).trim())
+            document.getElementById('grade').value = gr
+        }
+        else {
+            document.getElementById('grade').value = 'default'
+        }
+
+        if (document.getElementById('tp').innerText != null && document.getElementById('tp').innerText != 'undefined') {
+            let tp = JSON.parse((document.getElementById('tp').innerText).trim())
+            document.getElementById('topicnames').value = tp
+        }
+        else {
+            document.getElementById('topicnames').value = 'default'
+        }
+
+        if (document.getElementById('goBack').innerText != null) {
+            let t = JSON.parse((document.getElementById('goBack').innerText).trim())
+
+            document.getElementById('Subject').value = t
+
+        } else {
+            document.getElementById('Subject').value = 'default'
+        }
+        let updatedOptions = JSON.parse(document.getElementById('ndata').innerText)
+        if (goBackData.trim() != 'All') {
+            updateTopics(updatedOptions, document.getElementById('topicnames').value)
+        } else {
+            console.log('all')
+        }
+        let a = JSON.parse(document.getElementById('ndata').innerText)
+        updatedData = a
+        let b = checkData(a)
+        globalLength = a.length
+        let fi = a.filter(d => Object.keys(d).includes('topicName'))
+        a.forEach((article, index) => {
+            let rootdata = article
+            if (typeof (article.Topicdetails) != "undefined") {
+                topicDetailsWords = article.Topicdetails.split(' ').slice(0, 20).join(' ');
+
             }
             else {
-                document.getElementById('grade').value = 'default'
+                topicDetailsWords = ''
             }
+            if (article.time) {
+                timeago = getTimeDifference(article.time)
 
-            if (document.getElementById('tp').innerText != null && document.getElementById('tp').innerText != 'undefined') {
-                let tp = JSON.parse((document.getElementById('tp').innerText).trim())
-                document.getElementById('topicnames').value = tp
             }
             else {
-                document.getElementById('topicnames').value = 'default'
+                timeago = ''
             }
-
-            if (document.getElementById('goBack').innerText != null) {
-                let t = JSON.parse((document.getElementById('goBack').innerText).trim())
-
-                document.getElementById('Subject').value = t
-
-            } else {
-                document.getElementById('Subject').value = 'default'
-            }
-            let updatedOptions = JSON.parse(document.getElementById('ndata').innerText)
-            if (goBackData.trim() != 'All') {
-                updateTopics(updatedOptions, document.getElementById('topicnames').value)
-            } else {
-                console.log('all')
-            }
-            let a = JSON.parse(document.getElementById('ndata').innerText)
-            updatedData = a
-            let b = checkData(a)
-            globalLength = a.length
-            let fi = a.filter(d => Object.keys(d).includes('topicName'))
-            a.forEach((article, index) => {
-                let rootdata = article
-                if (typeof (article.Topicdetails) != "undefined") {
-                    topicDetailsWords = article.Topicdetails.split(' ').slice(0, 20).join(' ');
-
-                }
-                else {
-                    topicDetailsWords = ''
-                }
-                if (article.time) {
-                    timeago = getTimeDifference(article.time)
-
-                }
-                else {
-                    timeago = ''
-                }
-                if (a) {
-                    html += `
+            if (a) {
+                html += `
 
 <a href="#" style="text-decoration:none;color:black" id=${index} >
 
@@ -355,71 +362,71 @@
 </div>
 </a>
 `
-                } else {
-                    `<h1> Refresh to see the Data</h1>`
-                }
-
-            })
-            document.getElementById('articles').innerHTML = html
-            attachEventListeners()
-        }
-
-        function fetchdata(data) {
-            let d = []
-            data.forEach((e) => {
-                if (Object.keys(e).length != 0) {
-                    let keys = Object.keys(e)
-                    keys.forEach((key) => {
-                        d.push(e[key])
-                    })
-                }
-            })
-            return d
-        }
-
-        function fetchdata1(data) {
-            let d = []
-            for (const e in data) {
-                d.push(data[e])
+            } else {
+                `<h1> Refresh to see the Data</h1>`
             }
-            return d
+
+        })
+        document.getElementById('articles').innerHTML = html
+        attachEventListeners()
+    }
+
+    function fetchdata(data) {
+        let d = []
+        data.forEach((e) => {
+            if (Object.keys(e).length != 0) {
+                let keys = Object.keys(e)
+                keys.forEach((key) => {
+                    d.push(e[key])
+                })
+            }
+        })
+        return d
+    }
+
+    function fetchdata1(data) {
+        let d = []
+        for (const e in data) {
+            d.push(data[e])
         }
+        return d
+    }
 
-        function gettime(index, timedata) {
-            return (getTimeDifference(timedata))
-        }
+    function gettime(index, timedata) {
+        return (getTimeDifference(timedata))
+    }
 
-        function checkData(d) {
-            let mapped = d.map(e => e.Subject)
-            return removeDuplicates(mapped)
-        }
+    function checkData(d) {
+        let mapped = d.map(e => e.Subject)
+        return removeDuplicates(mapped)
+    }
 
-        function getData(event) {
-            goBackData = event.target.value
-            console.log(event.target.value)
-            document.getElementById('articles').innerHTML = ``
-            $.ajax({
-                url: "https://articleapiapp.onrender.com/docdata",
-                method: "POST",
-                data: { subject: event.target.value },
-                success: function (response) {
-                    updatedData = response.articles
-                    if (typeof (response.articles.length) == 'undefined') {
-                        keys = Object.keys(response.articles)
-                        let allartilces = Object.keys(response.articles)
-                        let subject = event.target.value
-                        globalLength = allartilces.length
+    function getData(event) {
+        goBackData = event.target.value
+        console.log(event.target.value)
+        document.getElementById('articles').innerHTML = ``
+        $.ajax({
+            url: "https://articleapiapp.onrender.com/docdata",
+            method: "POST",
+            data: { subject: event.target.value },
+            success: function (response) {
+                updatedData = response.articles
+                if (typeof (response.articles.length) == 'undefined') {
+                    keys = Object.keys(response.articles)
+                    let allartilces = Object.keys(response.articles)
+                    let subject = event.target.value
+                    globalLength = allartilces.length
 
-                        let filterd = response.topics.filter(t => t.subject == event.target.value)
-                        updateTopics(filterd)
-                        allartilces.forEach((elem, index) => {
-                            let rootdata = response.articles[elem]
-                            let time = response.articles[elem]?.time
-                            let timeago = getTimeDifference(time)
+                    let filterd = response.topics.filter(t => t.subject == event.target.value)
+                    updateTopics(filterd)
+                    allartilces.forEach((elem, index) => {
+                        let rootdata = response.articles[elem]
+                        let time = response.articles[elem]?.time
+                        let timeago = getTimeDifference(time)
 
 
-                            document.getElementById('articles').innerHTML +=
-                                `
+                        document.getElementById('articles').innerHTML +=
+                            `
                         <a href="#" style="text-decoration:none;color:black" id=${index} >
       <div class="card" style="width:100% ; background-color:rgb(226, 226, 241);border-radius:12px;position:relative;height:300px">
        
@@ -443,65 +450,65 @@
       `
 
 
-                        })
-                        attachEventListeners(); // Call the function to attach event listeners
-                    }
-                    else {
-                        let resdata = fetchdata(response.articles)
-                        updateTopics(resdata)
-                        useArr(response.articles)
-                    }
+                    })
+                    attachEventListeners(); // Call the function to attach event listeners
                 }
-            })
-
-        }
-
-        function updateTopics(alltopics, topic) {
-            const selectElement1 = document.getElementById("topicnames");
-
-            selectElement1.innerHTML = "";
-            const optiond1 = document.createElement("option");
-            optiond1.value = 'default'
-            optiond1.textContent = 'select your topic';
-            // optiond1.selected = true
-            selectElement1.appendChild(optiond1);
-            if (alltopics.length > 0) {
-                alltopics.forEach(function (elem, index) {
-                    const option1 = document.createElement("option");
-                    option1.value = elem.topicName;
-                    option1.textContent = elem.topicName;
-                    selectElement1.appendChild(option1);
-                });
-                document.getElementById('topicnames').value = topic
+                else {
+                    let resdata = fetchdata(response.articles)
+                    updateTopics(resdata)
+                    useArr(response.articles)
+                }
             }
+        })
 
+    }
 
+    function updateTopics(alltopics, topic) {
+        const selectElement1 = document.getElementById("topicnames");
+
+        selectElement1.innerHTML = "";
+        const optiond1 = document.createElement("option");
+        optiond1.value = 'default'
+        optiond1.textContent = 'select your topic';
+        // optiond1.selected = true
+        selectElement1.appendChild(optiond1);
+        if (alltopics.length > 0) {
+            alltopics.forEach(function (elem, index) {
+                const option1 = document.createElement("option");
+                option1.value = elem.topicName;
+                option1.textContent = elem.topicName;
+                selectElement1.appendChild(option1);
+            });
+            document.getElementById('topicnames').value = topic
         }
 
-        function attachEventListeners() {
-            let updata
-            for (let i = 0; i < globalLength; i++) {
-                document.getElementById(i).addEventListener('click', (event) => {
-                    if (typeof (updatedData.length) != 'undefined') {
-                        updata = updatedData[i]
-                    }
-                    else {
-                        updata = updatedData[i]
 
-                    }
-                    $.ajax({
-                        url: "https://articleapiapp.onrender.com/fetchPage",
-                        method: "POST",
-                        data: { articlevalue: updata },
-                        success: function (response) {
-                            let currentIndex = 1
-                            let numberofbuttons = response.articledata.Text.length
-                            let buttons = ``
-                            response.articledata.Text.forEach((buttonT, index) => {
+    }
 
-                                buttons += `<button class='btn btn-primary ml-4' style="margin-left:12px" id=button${index} value=${index}>${index + 1}</button>`
-                            })
-                            document.getElementById('majordata').innerHTML = `
+    function attachEventListeners() {
+        let updata
+        for (let i = 0; i < globalLength; i++) {
+            document.getElementById(i).addEventListener('click', (event) => {
+                if (typeof (updatedData.length) != 'undefined') {
+                    updata = updatedData[i]
+                }
+                else {
+                    updata = updatedData[i]
+
+                }
+                $.ajax({
+                    url: "https://articleapiapp.onrender.com/fetchPage",
+                    method: "POST",
+                    data: { articlevalue: updata },
+                    success: function (response) {
+                        let currentIndex = 1
+                        let numberofbuttons = response.articledata.Text.length
+                        let buttons = ``
+                        response.articledata.Text.forEach((buttonT, index) => {
+
+                            buttons += `<button class='btn btn-primary ml-4' style="margin-left:12px" id=button${index} value=${index}>${index + 1}</button>`
+                        })
+                        document.getElementById('majordata').innerHTML = `
 
                     <div id="ndata" style="display: none;">
                     </div>
@@ -597,140 +604,140 @@
         <button class='btn btn-primary' id=download style="background:none;color:black;margin-bottom:16px;border:none;cursor:pointer;width:max-content" >download</button>
     </div>              
             `
-                            document.getElementById('getInitial').addEventListener('click', (event) => {
-                                //http://localhost:8700/goBack?data=${goBackData}
-                                let f = document.getElementById('grade').value
-                                let p = document.getElementById('Subject').value
-                                let j = document.getElementById('topicnames').value
-                                console.log(p)
-                                let pdata = {
-                                    grade: f,
-                                    subject: p,
-                                    topicnames: j
-                                }
-
-                                $.ajax({
-                                    url: `https://articleapiapp.onrender.com/goBack`,
-                                    method: "POST",
-                                    data: pdata,
-                                    success: function (response) {
-                                        console.log(JSON.parse(response.articles))
-                                        document.getElementById('goBack').innerText = response.goback
-                                        document.getElementById('gr').innerText = response.grade
-                                        document.getElementById('tp').innerText = response.topic
-                                        document.getElementById('alltopics').innerText = response.alltopics
-                                        document.getElementById('ndata').innerText = response.articles
-                                        document.getElementById('lluu').style.display = 'none'
-                                        document.getElementById('dduu').style.display = 'block'
-                                        gi()
-
-                                    }
-                                })
-
-                            })
-
-                            for (let i = 0; i < numberofbuttons; i++) {
-                                let p = document.getElementById('download').addEventListener('click', (event) => {
-                                    html = response.articledata.Text[currentIndex - 1]
-                                    var htmlData = '<p>Your HTML content here</p>'; // Replace with your HTML data
-                                    var htmlDocument = '<!DOCTYPE html>' +
-                                        '<html>' +
-                                        '<head>' +
-                                        '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' +
-                                        '</head>' +
-                                        '<body>' +
-                                        html +
-                                        '</body>' +
-                                        '</html>';
-                                    Export2Doc(html, 'new.docX')
-                                })
+                        document.getElementById('getInitial').addEventListener('click', (event) => {
+                            //http://localhost:8700/goBack?data=${goBackData}
+                            let f = document.getElementById('grade').value
+                            let p = document.getElementById('Subject').value
+                            let j = document.getElementById('topicnames').value
+                            console.log(p)
+                            let pdata = {
+                                grade: f,
+                                subject: p,
+                                topicnames: j
                             }
 
-                            document.getElementById('Next').addEventListener('click', (event) => {
-                                if (currentIndex >= 0 && currentIndex < numberofbuttons) {
-                                    currentIndex = currentIndex + 1
-                                    document.getElementById('buttontext').innerText = currentIndex
-                                    document.getElementById('Previous').disabled = false;
-                                }
-                                else {
-                                    document.getElementById('Next').disabled = true;
-                                }
-                                document.getElementById('textcontent').innerHTML = response.articledata.Text[currentIndex - 1]
+                            $.ajax({
+                                url: `https://articleapiapp.onrender.com/goBack`,
+                                method: "POST",
+                                data: pdata,
+                                success: function (response) {
+                                    console.log(JSON.parse(response.articles))
+                                    document.getElementById('goBack').innerText = response.goback
+                                    document.getElementById('gr').innerText = response.grade
+                                    document.getElementById('tp').innerText = response.topic
+                                    document.getElementById('alltopics').innerText = response.alltopics
+                                    document.getElementById('ndata').innerText = response.articles
+                                    document.getElementById('lluu').style.display = 'none'
+                                    document.getElementById('dduu').style.display = 'block'
+                                    gi()
 
+                                }
                             })
 
-                            document.getElementById('Previous').addEventListener('click', (event) => {
-                                console.log(currentIndex)
+                        })
 
-                                if (currentIndex > 1) {
-                                    currentIndex = currentIndex - 1
-                                    document.getElementById('buttontext').innerText = currentIndex
-                                    document.getElementById('Next').disabled = false;
-
-                                }
-                                else {
-                                    document.getElementById('Previous').disabled = true;
-                                }
-                                document.getElementById('textcontent').innerHTML = response.articledata.Text[currentIndex - 1]
-
+                        for (let i = 0; i < numberofbuttons; i++) {
+                            let p = document.getElementById('download').addEventListener('click', (event) => {
+                                html = response.articledata.Text[currentIndex - 1]
+                                var htmlData = '<p>Your HTML content here</p>'; // Replace with your HTML data
+                                var htmlDocument = '<!DOCTYPE html>' +
+                                    '<html>' +
+                                    '<head>' +
+                                    '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">' +
+                                    '</head>' +
+                                    '<body>' +
+                                    html +
+                                    '</body>' +
+                                    '</html>';
+                                Export2Doc(html, 'new.docX')
                             })
-
                         }
-                    })
-                });
+
+                        document.getElementById('Next').addEventListener('click', (event) => {
+                            if (currentIndex >= 0 && currentIndex < numberofbuttons) {
+                                currentIndex = currentIndex + 1
+                                document.getElementById('buttontext').innerText = currentIndex
+                                document.getElementById('Previous').disabled = false;
+                            }
+                            else {
+                                document.getElementById('Next').disabled = true;
+                            }
+                            document.getElementById('textcontent').innerHTML = response.articledata.Text[currentIndex - 1]
+
+                        })
+
+                        document.getElementById('Previous').addEventListener('click', (event) => {
+                            console.log(currentIndex)
+
+                            if (currentIndex > 1) {
+                                currentIndex = currentIndex - 1
+                                document.getElementById('buttontext').innerText = currentIndex
+                                document.getElementById('Next').disabled = false;
+
+                            }
+                            else {
+                                document.getElementById('Previous').disabled = true;
+                            }
+                            document.getElementById('textcontent').innerHTML = response.articledata.Text[currentIndex - 1]
+
+                        })
+
+                    }
+                })
+            });
+        }
+    }
+
+    function getTimeDifference(timestamp) {
+        const currentTime = Date.now();
+        const timeDifference = currentTime - timestamp;
+        // Convert milliseconds to seconds, minutes, hours, days, and years
+        const seconds = Math.floor(timeDifference / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        const years = Math.floor(days / 365);
+        if (years >= 1) {
+            return `${years} years ago`;
+        } else if (years === 1) {
+            return `1 year ago`;
+        } else if (days >= 1) {
+            return `${days} days ago`;
+        } else if (hours >= 1) {
+            return `${hours} hours ago`;
+        } else if (minutes >= 1) {
+            return `${minutes} mins ago`;
+        } else {
+            return `${seconds} seconds ago`;
+        }
+    }
+
+    function removeDuplicates(arr) {
+        return arr.filter((value, index, self) => self.indexOf(value) === index);
+    }
+
+    function useArr(d) {
+        let html = ``
+        const data = fetchdata(d)
+        updatedData = data
+        globalLength = data.length
+        data.forEach((article, index) => {
+            let rootdata = article
+            if (typeof (article.Topicdetails) != "undefined") {
+                topicDetailsWords = article.Topicdetails.split(' ').slice(0, 20).join(' ');
             }
-        }
-
-        function getTimeDifference(timestamp) {
-            const currentTime = Date.now();
-            const timeDifference = currentTime - timestamp;
-            // Convert milliseconds to seconds, minutes, hours, days, and years
-            const seconds = Math.floor(timeDifference / 1000);
-            const minutes = Math.floor(seconds / 60);
-            const hours = Math.floor(minutes / 60);
-            const days = Math.floor(hours / 24);
-            const years = Math.floor(days / 365);
-            if (years >= 1) {
-                return `${years} years ago`;
-            } else if (years === 1) {
-                return `1 year ago`;
-            } else if (days >= 1) {
-                return `${days} days ago`;
-            } else if (hours >= 1) {
-                return `${hours} hours ago`;
-            } else if (minutes >= 1) {
-                return `${minutes} mins ago`;
-            } else {
-                return `${seconds} seconds ago`;
+            else {
+                topicDetailsWords = ''
             }
-        }
+            if (article.time) {
+                timeago = getTimeDifference(article.time)
 
-        function removeDuplicates(arr) {
-            return arr.filter((value, index, self) => self.indexOf(value) === index);
-        }
+            }
+            else {
+                timeago = ''
+            }
 
-        function useArr(d) {
-            let html = ``
-            const data = fetchdata(d)
-            updatedData = data
-            globalLength = data.length
-            data.forEach((article, index) => {
-                let rootdata = article
-                if (typeof (article.Topicdetails) != "undefined") {
-                    topicDetailsWords = article.Topicdetails.split(' ').slice(0, 20).join(' ');
-                }
-                else {
-                    topicDetailsWords = ''
-                }
-                if (article.time) {
-                    timeago = getTimeDifference(article.time)
-
-                }
-                else {
-                    timeago = ''
-                }
-
-                html += `
+            html += `
 
 <a href="#" style="text-decoration:none;color:black" id=${index} >
 
@@ -754,19 +761,19 @@
 </div>
 </a>
 `            })
-            document.getElementById('articles').innerHTML = html
-            attachEventListeners()
-        }
+        document.getElementById('articles').innerHTML = html
+        attachEventListeners()
+    }
 
-        function getAlldata() {
-            $.ajax({
-                url: "https://articleapiapp.onrender.com/getAll",
-                method: "POST",
-                // data: { subject: goBackData },
-                success: function (response) {
-                    // allArticlesData=fetchdata(response.allarticles)
+    function getAlldata() {
+        $.ajax({
+            url: "https://articleapiapp.onrender.com/getAll",
+            method: "POST",
+            // data: { subject: goBackData },
+            success: function (response) {
+                // allArticlesData=fetchdata(response.allarticles)
 
-                    let d = ` <select name="Subjects" style=" border-radius:10px;" id="Subject" class="form-control"
+                let d = ` <select name="Subjects" style=" border-radius:10px;" id="Subject" class="form-control"
                     onchange="getData(event)">
                     <option value="All">All</option>
 
@@ -776,52 +783,52 @@
                     <option value="Technology">Technology</option>
                 </select>`
 
-                }
-            })
-        }
+            }
+        })
+    }
 
-        function getTopic(event) {
-            //  goBackData = event.target.value
-            lastSavedTopic = document.getElementById('topicnames').value
+    function getTopic(event) {
+        //  goBackData = event.target.value
+        lastSavedTopic = document.getElementById('topicnames').value
 
-            lastSavedGrade = document.getElementById('grade').value
-            document.getElementById('articles').innerHTML = ``
-            $.ajax({
-                url: "https://articleapiapp.onrender.com/docdata",
-                method: "POST",
-                data: { grade: document.getElementById('grade').value, subject: document.getElementById('Subject').value, topic: document.getElementById('topicnames').value },
-                success: function (response) {
-                    updatedData = response.articles
-                    console.log(response.sendata)
-                    if (response.sendata.length > 0) {
-                        //  keys = Object.keys(response.articles)
-                        // let allartilces = Object.keys(response.articles)
-                        let subject = document.getElementById('Subject').value
-                        goBackData = document.getElementById('Subject').value
-                        globalLength = response.sendata.length
-                        let allarticlesmap = response.sendata
-                        updateTopics(allarticlesmap, document.getElementById('topicnames').value)
-                        updatedData = allarticlesmap
+        lastSavedGrade = document.getElementById('grade').value
+        document.getElementById('articles').innerHTML = ``
+        $.ajax({
+            url: "https://articleapiapp.onrender.com/docdata",
+            method: "POST",
+            data: { grade: document.getElementById('grade').value, subject: document.getElementById('Subject').value, topic: document.getElementById('topicnames').value },
+            success: function (response) {
+                updatedData = response.articles
+                console.log(response.sendata)
+                if (response.sendata.length > 0) {
+                    //  keys = Object.keys(response.articles)
+                    // let allartilces = Object.keys(response.articles)
+                    let subject = document.getElementById('Subject').value
+                    goBackData = document.getElementById('Subject').value
+                    globalLength = response.sendata.length
+                    let allarticlesmap = response.sendata
+                    updateTopics(allarticlesmap, document.getElementById('topicnames').value)
+                    updatedData = allarticlesmap
 
-                        //let filterallarticles = allarticlesmap.filter(t => t.class == event.target.value)
-                        allarticlesmap.forEach((article, index) => {
+                    //let filterallarticles = allarticlesmap.filter(t => t.class == event.target.value)
+                    allarticlesmap.forEach((article, index) => {
 
-                            if (typeof (article.Topicdetails) != "undefined") {
-                                topicDetailsWords = article.Topicdetails.split(' ').slice(0, 20).join(' ');
-                            }
-                            else {
-                                topicDetailsWords = ''
-                            }
-                            if (article.time) {
-                                timeago = getTimeDifference(article.time)
+                        if (typeof (article.Topicdetails) != "undefined") {
+                            topicDetailsWords = article.Topicdetails.split(' ').slice(0, 20).join(' ');
+                        }
+                        else {
+                            topicDetailsWords = ''
+                        }
+                        if (article.time) {
+                            timeago = getTimeDifference(article.time)
 
-                            }
-                            else {
-                                timeago = ''
-                            }
+                        }
+                        else {
+                            timeago = ''
+                        }
 
-                            document.getElementById('articles').innerHTML +=
-                                `
+                        document.getElementById('articles').innerHTML +=
+                            `
                         <a href="#" style="text-decoration:none;color:black" id=${index} >
 
       <div class="card" style="width:100% ; background-color:rgb(226, 226, 241);border-radius:12px;position:relative ; height:300px">
@@ -845,36 +852,36 @@
           </div>
         </a>
       `
-                        })
-                        attachEventListeners(); // Call the function to attach event listeners
-                    }
-                    else {
-                        updateTopics(response.sendata, document.getElementById('topicnames').value)
-                        useArr(response.sendata)
-                    }
+                    })
+                    attachEventListeners(); // Call the function to attach event listeners
                 }
-            })
-        }
-
-
-        function filterDuplicates(d) {
-            let b = []
-            let m = []
-            d.forEach(e => {
-                let j = m.find(p => p == e.class)
-                if (!j) {
-                    b.push(e)
-                    m.push(e.class)
+                else {
+                    updateTopics(response.sendata, document.getElementById('topicnames').value)
+                    useArr(response.sendata)
                 }
+            }
+        })
+    }
 
-            })
-            return b
-        }
+
+    function filterDuplicates(d) {
+        let b = []
+        let m = []
+        d.forEach(e => {
+            let j = m.find(p => p == e.class)
+            if (!j) {
+                b.push(e)
+                m.push(e.class)
+            }
+
+        })
+        return b
+    }
 
 
-        function Export2Doc(element, filename = '') {
+    function Export2Doc(element, filename = '') {
 
-            var customCSS = `
+        var customCSS = `
 <style>
 div {
   /* Add your CSS styles for div tags here */
@@ -891,50 +898,50 @@ p {
 </style>
 `;
 
-            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-                "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-                "xmlns='http://www.w3.org/TR/REC-html40'>" +
-                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-            var footer = "</body></html>";
-            var sourceHTML = header + element + footer;
+        var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+            "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+            "xmlns='http://www.w3.org/TR/REC-html40'>" +
+            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+        var footer = "</body></html>";
+        var sourceHTML = header + element + footer;
 
-            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-            var fileDownload = document.createElement("a");
-            document.body.appendChild(fileDownload);
-            fileDownload.href = source;
-            fileDownload.download = 'document.doc';
-            fileDownload.click();
-            document.body.removeChild(fileDownload);
-        }
+        var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+        var fileDownload = document.createElement("a");
+        document.body.appendChild(fileDownload);
+        fileDownload.href = source;
+        fileDownload.download = 'document.doc';
+        fileDownload.click();
+        document.body.removeChild(fileDownload);
+    }
 
-        async function loadInitialData() {
-            try {
-                const response = await new Promise((resolve, reject) => {
-                    $.ajax({
-                        url: "https://articleapiapp.onrender.com/",
-                        method: "GET",
-                        data: {},
-                        success: function (response) {
-                            console.log(response)
-                            resolve(response)
-                            document.getElementById('goBack').innerText = response.goback
-                            document.getElementById('gr').innerText = response.grade
-                            document.getElementById('tp').innerText = response.topic
-                            document.getElementById('alltopics').innerText = response.alltopics.filter(d => Object.keys(d).length != 0)
-                            document.getElementById('ndata').innerText = response.articles
+    async function loadInitialData() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "https://articleapiapp.onrender.com/",
+                    method: "GET",
+                    data: {},
+                    success: function (response) {
+                        console.log(response)
+                        resolve(response)
+                        document.getElementById('goBack').innerText = response.goback
+                        document.getElementById('gr').innerText = response.grade
+                        document.getElementById('tp').innerText = response.topic
+                        document.getElementById('alltopics').innerText = response.alltopics.filter(d => Object.keys(d).length != 0)
+                        document.getElementById('ndata').innerText = response.articles
 
-                        },
-                        error: function (error) {
-                            reject(error)
-                        }
-                    })
+                    },
+                    error: function (error) {
+                        reject(error)
+                    }
                 })
-            }
-            catch (error) {
-                console.log(error)
-
-            }
+            })
         }
+        catch (error) {
+            console.log(error)
+
+        }
+    }
 
     // })
 
