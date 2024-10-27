@@ -32,160 +32,110 @@
 </head>
 
 <style>
-  body {
-    background: #f5f5f5
-  }
-
-  .text-white-50 {
-    color: rgba(255, 255, 255, .5);
-  }
-
-  .bg-blue {
-    background-color: #00b5ec;
-  }
-
-  .border-bottom {
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-  }
-
-
-
-
-  body,
-  td,
-  th {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    color: #000000;
-    line-height: 30px;
-  }
-
-  .hj {
-    font-size: 16px;
-  }
-
-  tr {
-    margin-top: 10px;
-  }
-
-  body {
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-  }
-
-  .pad {
-    padding-left: 10px;
-  }
-
-  a:link {
-    color: #000000;
-    text-decoration: none;
-  }
-
-  a:visited {
-    text-decoration: none;
-    color: #2c23a4;
-    background-color: #00b5ec;
-  }
-
-  a:hover {
-    text-decoration: underline;
-    color: #442c8c;
-    background-color: #00b5ec;
-  }
-
-  a:active {
-    text-decoration: none;
-    color: #4d4eaf;
-  }
-
-  table table {
-    margin-left: 40px;
-  }
-
-
   * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
-  body {
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
+body {
+  background-color: #f4f4f9;
+  color: #000;
+  font-size: 16px; /* Adjusted font size */
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+}
 
-  .resume-container {
-    width: 80%;
-    max-width: 800px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    /* Ensures all text is aligned to the left */
-  }
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5);
+}
 
-  header {
-    margin-bottom: 20px;
-  }
+.bg-blue {
+  background-color: #00b5ec;
+}
 
-  header h1 {
-    font-size: 2em;
-    color: #333;
-  }
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
 
-  header p,
-  header a {
-    color: #666;
-    font-size: 0.9em;
-  }
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
 
-  a {
-    text-decoration: none;
-    color: #2b6cb0;
-  }
+/* Link styles */
+a {
+  text-decoration: none;
+  color: #2b6cb0;
+}
 
-  section {
-    margin-bottom: 20px;
-  }
+a:visited {
+  color: #2c23a4;
+  background-color: #00b5ec;
+}
 
-  h2 {
-    font-size: 1.5em;
-    color: #2b6cb0;
-    margin-bottom: 10px;
-  }
+a:hover {
+  text-decoration: underline;
+  color: #442c8c;
+}
 
-  h3 {
-    font-size: 1.2em;
-    color: #333;
-    margin-top: 10px;
-  }
+/* Container */
+.resume-container {
+  width: 80%;
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
 
-  ul {
-    list-style: none;
-    padding-left: 15px;
-  }
+/* Header */
+header {
+  margin-bottom: 20px;
+}
 
-  ul li {
-    font-size: 0.95em;
-    color: #333;
-    margin-bottom: 8px;
-  }
+header h1 {
+  font-size: 1.5em;
+  color: #333;
+}
 
-  p {
-    font-size: 0.95em;
-    color: #444;
-  }
+header p, header a {
+  color: #666;
+  font-size: 0.8em;
+}
+
+/* Section titles */
+h2 {
+  font-size: 1.2em;
+  color: #2b6cb0;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1em;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* List styles */
+ul {
+  list-style: none;
+  padding-left: 15px;
+}
+
+ul li, p {
+  font-size: 0.85em;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+section p{
+  margin-left: 15px;
+}
 </style>
 
 <body>
@@ -201,7 +151,7 @@
 
     <section>
       <h2>Professional Summary</h2>
-      <p>Full Stack Developer with 2.5 years of experience in developing user-centric applications and websites that
+      <p>Full Stack Developer with 2 years and 2 months of experience in developing user-centric applications and websites that
         enhance engagement and functionality. Specialized in MEAN and MERN stack technologies, seeking new opportunities
         in the Education sector to drive innovation and improve learning experiences.</p>
     </section>
@@ -256,14 +206,14 @@
         </ul>
       </div>
 
-      <div>
+      <!-- <div>
         <h3>InfiSecure Solutions Pvt. Ltd.</h3>
         <p>Bangalore, India | Jr. Full Stack Development Intern | February 2022 – August 2022</p>
         <ul>
           <li>Configured backend systems and created APIs using Spring Boot, enhancing backend performance.</li>
           <li>Integrated JWT authentication and contributed to MVC-based web applications.</li>
         </ul>
-      </div>
+      </div> -->
     </section>
 
     <section>
