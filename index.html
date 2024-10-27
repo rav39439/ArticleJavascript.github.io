@@ -323,7 +323,7 @@ section p{
   function loadMessages() {
     $.ajax({
       type: "GET",
-      url: "http://localhost:3000/myprofile",
+      url: "https://portfolioapi-1yt6.onrender.com/myprofile",
       success: function (response) {
         console.log(response)
         let messageContainer = document.getElementById("mymessages");
@@ -376,7 +376,7 @@ section p{
     document.getElementById("terminate").style.display = "block";
     $.ajax({
       type: "POST",
-      url: 'http://localhost:3000/setUserSession',
+      url: 'https://portfolioapi-1yt6.onrender.com/setUserSession',
       data: formData,
       success: function (response) {
 
@@ -398,7 +398,7 @@ section p{
 
     $.ajax({
       type: "POST",
-      url: 'http://localhost:3000/myprofile/sendmessage',
+      url: 'https://portfolioapi-1yt6.onrender.com/myprofile/sendmessage',
       data: formData,
       success: function (response) {
         // Redirect based on response.comment or update messages
