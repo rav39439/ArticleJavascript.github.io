@@ -278,8 +278,6 @@ section p{
           <a href="https://collegecoursemanagement.netlify.app/" target="_blank">Website</a>
         </li>
       </ul>
-
-       
     </section>
 
     <section>
@@ -333,7 +331,7 @@ section p{
         <label for="exampleInputEmail1">Enter your Organization</label>
         <input type="text" name="Organization" class="form-control" id="Organization" aria-describedby="emailHelp">
       </div> -->
-
+<div id="custommessage"></div>
       <button class="btn btn-primary mt-3" type="submit" id="setSession">Start Conversation
       </button>
     </form>
@@ -344,7 +342,7 @@ section p{
         <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
       </div>
 
-      <button type="submit" class="btn btn-primary">Send</button>
+      <button type="submit" class="btn btn-primary mt-2">Send</button>
     </form>
 
     <button class="btn btn-primary mt-3" id="terminate">Terminate Conversation</button>
@@ -372,17 +370,20 @@ section p{
             `;
 
         // Append each message to the message container
-        response.messages.forEach((message) => {
-          let messageHtml = `
-                <div class="media text-muted pt-3">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="mr-2 rounded" width="32" height="32">
-                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">${message.username || "Anonymous"}</strong>
-                    ${message.message}
-                  </p>
-                </div>
-              `;
-          messageContainer.innerHTML += messageHtml;
+        response.messages.forEach((message,index) => {
+          if(index>4){
+            let messageHtml = `
+            <div class="media text-muted pt-3">
+              <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="mr-2 rounded" width="32" height="32">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">${message.username || "Anonymous"}</strong>
+                ${message.message}
+              </p>
+            </div>
+          `;
+      messageContainer.innerHTML += messageHtml;
+          }
+          
         });
 
         // Optionally, display the additional message (messegeg)
@@ -409,9 +410,16 @@ section p{
     formData={}
     username = prompt('Enter your username')
     organization = prompt('Enter your organization')
-    document.getElementById("myform").style.display = "block";
-    document.getElementById("setSession").style.display = "none";
-    document.getElementById("terminate").style.display = "block";
+    console.log(username)
+    if(username!='' && username!==null && organization!=='' && organization!==null){
+      document.getElementById("myform").style.display = "block";
+      document.getElementById("setSession").style.display = "none";
+      document.getElementById("terminate").style.display = "block";
+    }
+    else{
+      document.getElementById("custommessage").innerHTML = "Please enter your details to continue";
+    }
+    
     $.ajax({
       type: "POST",
       url: 'https://portfolioapi-1yt6.onrender.com/setUserSession',
