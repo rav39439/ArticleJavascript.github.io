@@ -1,491 +1,2455 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+<title>Ravc Kumar | AI/ML Engineer & Full Stack Developer</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-    crossorigin="anonymous"></script>
-  <script src="/socket.io/socket.io.js"></script>
-
-
-
-
-</head>
+<meta name="description"
+content="Portfolio of Ravc Kumar - AI/ML Engineer, Generative AI Developer and Full Stack Developer specializing in Python, FastAPI, LLMs, RAG, LangGraph, Machine Learning and Cloud." />
 
 <style>
-  * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #06070b;
+    --bg2: #0b0e15;
+    --card: rgba(255,255,255,0.045);
+    --card-hover: rgba(255,255,255,0.075);
+    --border: rgba(255,255,255,0.10);
+    --text: #f5f7ff;
+    --muted: #9ba3b7;
+    --primary: #7c5cff;
+    --secondary: #00d4ff;
+    --green: #35e69a;
+    --orange: #ff9d5c;
+    --pink: #ff5ca8;
 }
 
 body {
-  background-color: #f4f4f9;
-  color: #000;
-  font-size: 16px; /* Adjusted font size */
-  line-height: 1.5;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  margin: 0;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(circle at 15% 10%, rgba(124,92,255,.16), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(0,212,255,.10), transparent 25%),
+        var(--bg);
+
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-.text-white-50 {
-  color: rgba(255, 255, 255, 0.5);
+/* ---------------- NAVBAR ---------------- */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    padding: 18px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    backdrop-filter: blur(20px);
+    background: rgba(6,7,11,.72);
+
+    border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
-.bg-blue {
-  background-color: #00b5ec;
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.logo span {
+    color: var(--primary);
 }
 
-.box-shadow {
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
 }
 
-/* Link styles */
-a {
-  text-decoration: none;
-  color: #2b6cb0;
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
 }
 
-a:visited {
-  color: #2c23a4;
-  background-color: #00b5ec;
+.nav-links a:hover {
+    color: white;
 }
 
-a:hover {
-  text-decoration: underline;
-  color: #442c8c;
+.menu-btn {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
 }
 
-/* Container */
-.resume-container {
-  width: 80%;
-  max-width: 800px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: left;
+/* ---------------- HERO ---------------- */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 120px 8% 80px;
+
+    position: relative;
 }
 
-/* Header */
-header {
-  margin-bottom: 20px;
+.hero-content {
+    max-width: 850px;
+    position: relative;
+    z-index: 2;
 }
 
-header h1 {
-  font-size: 1.5em;
-  color: #333;
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.04);
+
+    color: var(--green);
+
+    font-size: 13px;
+    margin-bottom: 25px;
 }
 
-header p, header a {
-  color: #666;
-  font-size: 0.8em;
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+
+    box-shadow: 0 0 15px var(--green);
 }
 
-/* Section titles */
-h2 {
-  font-size: 1.2em;
-  color: #2b6cb0;
-  margin-bottom: 10px;
+.hero h1 {
+    font-size: clamp(50px, 8vw, 100px);
+    line-height: .95;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 28px;
 }
 
-h3 {
-  font-size: 1em;
-  color: #333;
-  margin-top: 10px;
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #8d7aff,
+        #00d4ff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* List styles */
-ul {
-  list-style: none;
-  padding-left: 15px;
+.hero-description {
+    color: var(--muted);
+    font-size: 19px;
+    max-width: 700px;
+    margin-bottom: 35px;
 }
 
-ul li, p {
-  font-size: 0.85em;
-  color: #444;
-  margin-bottom: 8px;
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-section p{
-  margin-left: 15px;
+.btn {
+    padding: 13px 22px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    transition: .3s;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
+
+.btn-primary {
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        #5b7cff
+    );
+
+    color: white;
+
+    box-shadow: 0 10px 30px rgba(124,92,255,.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 1px solid var(--border);
+    color: white;
+    background: rgba(255,255,255,.04);
+}
+
+.btn-outline:hover {
+    background: rgba(255,255,255,.09);
+}
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 70px 70px;
+
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* ---------------- SECTIONS ---------------- */
+
+section {
+    padding: 110px 8%;
+}
+
+.section-header {
+    margin-bottom: 50px;
+}
+
+.section-label {
+    color: var(--primary);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: clamp(35px,5vw,58px);
+    letter-spacing: -2px;
+    margin-top: 10px;
+}
+
+.section-description {
+    color: var(--muted);
+    max-width: 700px;
+    margin-top: 15px;
+}
+
+/* ---------------- STATS ---------------- */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    padding: 28px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    transition: .3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+}
+
+.stat-number {
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ---------------- EXPERIENCE ---------------- */
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background: linear-gradient(
+        var(--primary),
+        transparent
+    );
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 55px;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    left: 4px;
+    top: 8px;
+
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow: 0 0 20px var(--primary);
+}
+
+.timeline-card {
+    padding: 30px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+}
+
+.company {
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.role {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.date {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 5px 0 20px;
+}
+
+.experience-list {
+    padding-left: 18px;
+}
+
+.experience-list li {
+    color: #b8bfd0;
+    margin-bottom: 12px;
+}
+
+/* ---------------- SKILLS ---------------- */
+
+.skill-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.skill-tab {
+    padding: 10px 16px;
+
+    border-radius: 50px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.skill-tab.active,
+.skill-tab:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.skill-card {
+    padding: 25px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    border-radius: 16px;
+
+    transition: .3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-card h3 {
+    margin-bottom: 15px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    font-size: 12px;
+
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    background: rgba(124,92,255,.10);
+
+    border: 1px solid rgba(124,92,255,.2);
+
+    color: #c9c1ff;
+}
+
+/* ---------------- PROJECTS ---------------- */
+
+.project-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--muted);
+
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.search-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+
+    color: white;
+
+    padding: 11px 15px;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    min-width: 230px;
+}
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 20px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition:
+        transform .35s,
+        border .35s,
+        opacity .3s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(124,92,255,.45);
+}
+
+.project-card.hidden {
+    display: none;
+}
+
+.project-top {
+    height: 160px;
+
+    padding: 25px;
+
+    display: flex;
+    align-items: flex-end;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(124,92,255,.30),
+            transparent 50%
+        ),
+        linear-gradient(
+            135deg,
+            #111522,
+            #080a10
+        );
+}
+
+.project-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid var(--border);
+}
+
+.project-body {
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.project-body h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.project-body p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+
+    flex: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.project-links a {
+    flex: 1;
+
+    text-align: center;
+
+    padding: 9px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    border: 1px solid var(--border);
+
+    color: white;
+}
+
+.project-links a:hover {
+    background: var(--primary);
+}
+
+/* ---------------- AI ARCHITECTURE ---------------- */
+
+.architecture {
+    border: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(124,92,255,.10),
+            transparent 50%
+        ),
+        var(--card);
+
+    border-radius: 25px;
+
+    padding: 45px;
+
+    overflow-x: auto;
+}
+
+.flow {
+    min-width: 850px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.flow-box {
+    padding: 20px;
+
+    min-width: 130px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.04);
+}
+
+.flow-box strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.flow-box span {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.arrow {
+    color: var(--primary);
+    font-size: 22px;
+}
+
+/* ---------------- CONTACT ---------------- */
+
+.contact {
+    text-align: center;
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.contact h2 {
+    font-size: clamp(40px,6vw,70px);
+    letter-spacing: -3px;
+}
+
+.contact p {
+    color: var(--muted);
+    margin: 20px auto 30px;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+    padding: 35px 8%;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+footer a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+/* ---------------- ANIMATION ---------------- */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media(max-width:1000px) {
+
+    .projects-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px) {
+
+    nav {
+        padding: 16px 5%;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 65px;
+        left: 0;
+        right: 0;
+
+        flex-direction: column;
+
+        padding: 25px;
+
+        background: #0a0c12;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    section {
+        padding: 80px 5%;
+    }
+
+    .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .stats,
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
 </style>
+</head>
 
 <body>
 
+<!-- ================= NAVIGATION ================= -->
 
-  <div class="resume-container">
-    <header>
-      <h1>Ravish Kumar</h1>
-      <p>#1052, Prestige SOTS, Begur Main Road, Bengaluru, KA 560068</p>
-      <p>+91 7026912304 | <a href="mailto:rav39439@gmail.com">rav39439@gmail.com</a></p>
-      <p><a href="https://www.linkedin.com/in/ravish-kumar" target="_blank">LinkedIn Profile</a></p>
-    </header>
+<nav>
 
-    <section>
-      <h2>Professional Summary</h2>
-      <p>Full Stack Developer with 2 years and 2 months of experience in developing user-centric applications and websites that
-        enhance engagement and functionality. Specialized in MEAN and MERN stack technologies, seeking new opportunities
-        in the Education sector to drive innovation and improve learning experiences.</p>
-    </section>
+    <div class="logo">
+        RK<span>.</span>
+    </div>
 
-    <section>
-      <h2>Education</h2>
-      <ul>
-        <li><strong>PES University</strong>, Bengaluru, India – Master of Business Administration (MBA), 2018</li>
-        <li><strong>Patna University</strong>, Patna, India – M.Sc. in Physics (Measurement and Instrumentation), 2015
-        </li>
-        <li><strong>Patna University</strong>, Patna, India – B.Sc. in Science, 2013</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Technical Skills</h2>
-      <p><strong>Programming Languages:</strong> JavaScript, TypeScript, HTML, CSS, Java, Python, .Net</p>
-      <p><strong>Frameworks:</strong> Microservices, MEAN, MERN</p>
-      <p><strong>Web Technologies:</strong> React, Angular, Node.js, Express, REST, API, Web Sockets, Redux, Spring
-        Boot, Maven</p>
-      <p><strong>Databases:</strong> PostgreSQL, MySQL, Firebase, MongoDB</p>
-      <p><strong>Cloud Skills:</strong> Docker, GCP, Cloud Functions, Cloud Storage, BigQuery, Cloud Run</p>
-      <p><strong>Tools:</strong> VS Code, Git, JIRA, PyCharm, Eclipse, BitBucket, IntelliJ IDEA</p>
-      <p><strong>Other:</strong> SendGrid, Mailjet, Exotel</p>
-    </section>
-
-    <section>
-      <h2>Professional Experience</h2>
-      <div>
-        <h3>ThinkTac Pvt Ltd</h3>
-        <p>Bangalore, India | Full Stack Developer | November 2022 – Present</p>
-        <ul>
-          <li>Developed interactive web applications using AngularJS, ReactJS, and Node.js to enhance user engagement.
-          </li>
-          <li>Engineered responsive front-end applications using HTML, Tailwind, and SCSS, ensuring seamless
-            cross-device experiences.</li>
-          <li>Executed CRUD operations on Firebase, optimizing data management and application performance.</li>
-          <li>Directed the implementation of a learning materials module for efficient resource management by educators.
-          </li>
-          <li>Mentored junior developers, fostering collaboration and skill development.</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Null Class Pvt. Ltd.</h3>
-        <p>Bangalore, India | Full Stack Development Intern | October 2022 – November 2022</p>
-        <ul>
-          <li>Contributed to the development of a Stack Overflow clone, implementing secure OTP login and a chatbot for
-            user queries.</li>
-          <li>Developed backend CRUD operations on MongoDB with Node.js and created a secure payment gateway
-            integration.</li>
-        </ul>
-      </div>
-
-      <!-- <div>
-        <h3>InfiSecure Solutions Pvt. Ltd.</h3>
-        <p>Bangalore, India | Jr. Full Stack Development Intern | February 2022 – August 2022</p>
-        <ul>
-          <li>Configured backend systems and created APIs using Spring Boot, enhancing backend performance.</li>
-          <li>Integrated JWT authentication and contributed to MVC-based web applications.</li>
-        </ul>
-      </div> -->
-    </section>
-
-    <section>
-      <h2>Projects</h2>
-      <ul>
-      
-        <li>
-          <strong>Object State Detection:</strong> Real-time tool built with Python and Flask, optimized with Google
-          Cloud. 
-        
-        </li>
-        <li>
-          <strong>Free Study Material Web:</strong> NodeJS and JavaScript-powered platform for study material access,
-          chat, and real-time admin interactions. 
-          <a href="https://github.com/rav39439/Neweducationworld.com " target="_blank">GitHub</a> | 
-          <a href="https://neweducationworld.onrender.com/" target="_blank">Website</a>
-        </li>
-        <li>
-          <strong>Online E-commerce Store:</strong> E-commerce app using NodeJS, ReactJS, and MongoDB, supporting
-          product browsing, orders, and tracking for customers. 
-            <a href="https://github.com/rav39439/Mernnewclient" target="_blank">GitHub</a> | 
-          <a href="https://ecommercewebshop.netlify.app/" target="_blank">Website</a>
-        </li>
-        <li>
-          <strong>Promote Your Product:</strong> NodeJS and MongoDB Atlas-based platform allowing admins to showcase
-          products and interact with users through chat. 
-          <a href="https://github.com/rav39439/Mernnewclient" target="_blank">GitHub</a>
-        </li>
-        <li>
-          <strong>Share Post App:</strong> Built with Java Spring Boot and AngularJS, this app enables user
-          connections, private posts, and event advertising. 
-          <a href="https://github.com/rav39439/Mynewsharepostapp" target="_blank">GitHub</a> 
-        </li>
-        <li>
-          <strong>Online Web Library:</strong> A NodeJS and MongoDB-based system for library management, user
-          registration, and daily usage tracking. 
-          <a href="https://github.com/your-username/online-web-library" target="_blank">GitHub</a>
-        </li>
-
+    <ul class="nav-links" id="navLinks">
 
         <li>
-          <strong>Movies app:</strong> A simple movie-app where you can browse movies , search movies and 
-          add them to your watchlist. 
-          <a href="https://github.com/rav39439/ReactJSAssignment" target="_blank">GitHub</a> | 
-          <a href="https://watchlistmovieapp.netlify.app/" target="_blank">Website</a>
+            <a href="#home">Home</a>
         </li>
 
         <li>
-          <strong>Stack Overflow Clone:</strong> This project, inspired by Stack Overflow, enables users to post questions, communicate with experts, search by tags, and includes features I added, such as a chatbot for expert interaction, OTP phone login, and a map-based location display.. 
-          <a href="https://github.com/rav39439/Stackoverflowclonefrontend" target="_blank">Github</a> |
-           <a href="https://stackoverflowfrontend.netlify.app/" target="_blank">Website</a>
+            <a href="#experience">Experience</a>
         </li>
 
         <li>
-          <strong>OnlinecourseMangement:</strong> This application is an educational platform for institutions to manage curriculum data, enabling admins to handle courses, student progress, results, and news, while students can access results, registration info, and updates.
-          <a href="https://github.com/rav39439/Collegemanagementfrontend/" target="_blank">GitHub</a>
+            <a href="#skills">Skills</a>
         </li>
-
 
         <li>
-          <strong>SharePostApp:</strong> This application connects users for sharing posts, allowing them to register, search, connect with others, view private posts, comment, and share ads, news, or events with their network.
-          <a href="https://github.com/rav39439/Collegemanagementfrontend/" target="_blank">GitHub</a> | 
-          <a href="https://collegecoursemanagement.netlify.app/" target="_blank">Website</a>
+            <a href="#projects">Projects</a>
         </li>
-      </ul>
-    </section>
 
-    <section>
-      <h2>Achievements and Certifications</h2>
-      <ul>
-        <li>PROF CNR Rao Merit Scholarship for academic excellence at PES University.</li>
-        <li>HTML, CSS, and JavaScript for Web Developers — Coursera (Credential: D94U6WF7ZMAF)</li>
-        <li>Secure Full Stack MEAN Developer — Coursera (Credential: F9JBMJUEUEJQ)</li>
-        <li>Front-End Web Development with React — Coursera (Credential: GXX64EVHCK5G)</li>
-        <li>The Complete Web Development Bootcamp 2022 — Udemy</li>
-      </ul>
-    </section>
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+    <div class="menu-btn" id="menuBtn">
+        ☰
+    </div>
+
+</nav>
 
 
-    <center>
-      <h1 class="mt-5">MESSAGE BOARD</h1>
-    </center>
+<!-- ================= HERO ================= -->
 
-    <main role="main" class="container bootdey.com">
-      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-blue rounded box-shadow">
-        <img class="mr-3" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="48" height="48">
-        <div class="lh-100">
-          <h6 class="mb-0 text-white lh-100">Ravish Kumar</h6>
-          <small>Messages</small>
-        </div>
-      </div>
+<section class="hero" id="home">
 
-      <div class="my-3 p-3 bg-white rounded box-shadow" id="mymessages">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Recent Messages</h6>
-        <div class="media text-muted pt-3">
-          <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="mr-2 rounded" width="32"
-            height="32">
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">
-            </strong>
-          </p>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+
+            <span class="status-dot"></span>
+
+            AI / ML Engineer · Full Stack Developer
+
         </div>
 
-        <small class="d-block text-right mt-3">
-          <a href="#">All messages</a>
-        </small>
-      </div>
-    </main>
-    <form id="setSession" method="POST">
-      <!-- <div class="form-group">
-        <label for="exampleInputEmail1">Enter your name</label>
-        <input type="text" name="userDetails" class="form-control" id="userDetails" aria-describedby="emailHelp">
-      </div>
+        <h1>
 
-      <div class="form-group">
-        <label for="exampleInputEmail1">Enter your Organization</label>
-        <input type="text" name="Organization" class="form-control" id="Organization" aria-describedby="emailHelp">
-      </div> -->
-<div id="custommessage"></div>
-      <button class="btn btn-primary mt-3" type="submit" id="setSession">Leave a message
-      </button>
-    </form>
+            Building
+            <span class="gradient-text">
+                intelligent
+            </span>
 
-    <form id="myform" method="POST">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Type your message</label>
-        <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
-      </div>
+            systems.
 
-      <button type="submit" class="btn btn-primary mt-2">Post</button>
-    </form>
+        </h1>
 
-    <button class="btn btn-primary mt-3" id="terminate">Terminate Conversation</button>
+        <p class="hero-description">
+
+            Software Engineer specializing in Generative AI,
+            Machine Learning, LLM applications, predictive analytics,
+            distributed systems, FastAPI microservices and modern
+            cloud-native architectures.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#projects"
+                class="btn btn-primary">
+
+                Explore Projects →
+            
+            </a>
+
+            <a
+                href="https://github.com/rav39439"
+                target="_blank"
+                class="btn btn-outline">
+
+                GitHub ↗
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-  </div>
-</body>
-<script>
-  document.getElementById("myform").style.display = "none";
-  document.getElementById("terminate").style.display = "none";
+<!-- ================= ABOUT / STATS ================= -->
 
-  let username = ''
-  let organization = ''
-  function loadMessages() {
-    $.ajax({
-      type: "GET",
-      url: "https://portfolioapi-1yt6.onrender.com/myprofile",
-      success: function (response) {
-        console.log(response)
-        let messageContainer = document.getElementById("mymessages");
+<section>
 
-        // Clear any previous content in the message container
-        messageContainer.innerHTML = `
-              <h6 class="border-bottom border-gray pb-2 mb-0">Recent Messages</h6>
-            `;
+    <div class="section-header reveal">
 
-        // Append each message to the message container
-        response.messages.forEach((message,index) => {
-          if(index>5){
-            let messageHtml = `
-            <div class="media text-muted pt-3">
-              <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" class="mr-2 rounded" width="32" height="32">
-              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">${message.username || "Anonymous"}</strong>
-                ${message.message}
-              </p>
+        <div class="section-label">
+            Profile
+        </div>
+
+        <h2 class="section-title">
+            Engineering at the intersection of
+            software & intelligence.
+        </h2>
+
+        <p class="section-description">
+
+            I build production-oriented AI and software systems,
+            combining backend engineering, machine learning,
+            distributed processing and Generative AI.
+
+        </p>
+
+    </div>
+
+
+    <div class="stats reveal">
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                3+
             </div>
-          `;
-      messageContainer.innerHTML += messageHtml;
-          }
-          
+
+            <div class="stat-label">
+                Years Software Engineering
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                15+
+            </div>
+
+            <div class="stat-label">
+                AI & Software Projects
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                25%
+            </div>
+
+            <div class="stat-label">
+                Inference Latency Reduction
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                30%
+            </div>
+
+            <div class="stat-label">
+                Manual Troubleshooting Reduction
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EXPERIENCE ================= -->
+
+<section id="experience">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Experience
+        </div>
+
+        <h2 class="section-title">
+            Professional Journey
+        </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+        <!-- Mindteck -->
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <div class="company">
+                    Mindteck Pvt Ltd · Bangalore
+                </div>
+
+                <div class="role">
+                    Software Engineer
+                </div>
+
+                <div class="date">
+                    October 2025 — Present
+                </div>
+
+                <ul class="experience-list">
+
+                    <li>
+                        Engineered scalable FastAPI microservices
+                        and REST APIs for enterprise AI applications,
+                        integrating MySQL, MongoDB, Redis and AWS S3.
+                    </li>
+
+                    <li>
+                        Architected AI-driven predictive maintenance
+                        solutions for enterprise storage systems using
+                        LSTM Autoencoders, Isolation Forest, XGBoost
+                        and statistical anomaly detection.
+                    </li>
+
+                    <li>
+                        Implemented distributed telemetry pipelines
+                        using Apache Spark, Kafka and Beam for real-time
+                        and batch processing.
+                    </li>
+
+                    <li>
+                        Improved inference latency by
+                        <strong>25%</strong> and processing throughput
+                        by <strong>20%</strong> using asynchronous
+                        programming, multithreading, caching and
+                        concurrent processing.
+                    </li>
+
+                    <li>
+                        Orchestrated multi-agent AI workflows using
+                        LangChain, LangGraph, RAG, LLMs and vector
+                        databases.
+                    </li>
+
+                    <li>
+                        Improved diagnostic accuracy by
+                        <strong>18%</strong> and reduced manual
+                        troubleshooting by <strong>30%</strong>.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- ThinkTac -->
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+                <div class="company">
+                    ThinkTac Pvt Ltd · Bangalore
+                </div>
+
+                <div class="role">
+                    Full Stack Developer
+                </div>
+
+                <div class="date">
+                    November 2022 — March 2025
+                </div>
+
+                <ul class="experience-list">
+
+                    <li>
+                        Built responsive web applications using
+                        ReactJS, AngularJS, Node.js and Java Spring Boot.
+                    </li>
+
+                    <li>
+                        Implemented RAG pipelines using vector
+                        databases, LLMs, LangChain and semantic search.
+                    </li>
+
+                    <li>
+                        Developed Machine Learning models using
+                        Scikit-learn and PyTorch.
+                    </li>
+
+                    <li>
+                        Designed a field workforce management platform
+                        for employee location tracking, scheduled
+                        educational visits, manager notifications and
+                        automated reports.
+                    </li>
+
+                    <li>
+                        Contributed to a
+                        <strong>10% increase in sales</strong>
+                        through improved operational visibility.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section id="skills">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Technology
+        </div>
+
+        <h2 class="section-title">
+            Technical Arsenal
+        </h2>
+
+    </div>
+
+
+    <div class="skill-tabs">
+
+        <button class="skill-tab active"
+                data-skill="all">
+            All
+        </button>
+
+        <button class="skill-tab"
+                data-skill="ai">
+            AI / LLM
+        </button>
+
+        <button class="skill-tab"
+                data-skill="backend">
+            Backend
+        </button>
+
+        <button class="skill-tab"
+                data-skill="ml">
+            Machine Learning
+        </button>
+
+        <button class="skill-tab"
+                data-skill="cloud">
+            Cloud / DevOps
+        </button>
+
+        <button class="skill-tab"
+                data-skill="frontend">
+            Frontend
+        </button>
+
+    </div>
+
+
+    <div class="skills-grid">
+
+
+        <div class="skill-card skill-item ai">
+
+            <h3>Generative AI</h3>
+
+            <div class="tags">
+
+                <span class="tag">LLMs</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">AI Agents</span>
+                <span class="tag">RAG</span>
+                <span class="tag">Prompt Engineering</span>
+                <span class="tag">Vector DB</span>
+                <span class="tag">Hugging Face</span>
+                <span class="tag">LoRA</span>
+                <span class="tag">Fine-Tuning</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card skill-item ml">
+
+            <h3>Machine Learning</h3>
+
+            <div class="tags">
+
+                <span class="tag">Python</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">TensorFlow</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">XGBoost</span>
+                <span class="tag">CatBoost</span>
+                <span class="tag">CNN</span>
+                <span class="tag">RNN</span>
+                <span class="tag">LSTM</span>
+                <span class="tag">NLP</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card skill-item backend">
+
+            <h3>Backend Engineering</h3>
+
+            <div class="tags">
+
+                <span class="tag">FastAPI</span>
+                <span class="tag">Django</span>
+                <span class="tag">Flask</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Express.js</span>
+                <span class="tag">REST APIs</span>
+                <span class="tag">Microservices</span>
+                <span class="tag">GraphQL</span>
+                <span class="tag">WebSockets</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card skill-item cloud">
+
+            <h3>Cloud & DevOps</h3>
+
+            <div class="tags">
+
+                <span class="tag">AWS EC2</span>
+                <span class="tag">AWS ECR</span>
+                <span class="tag">AWS S3</span>
+                <span class="tag">GCP</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Kubernetes</span>
+                <span class="tag">Linux</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">CI/CD</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card skill-item frontend">
+
+            <h3>Frontend</h3>
+
+            <div class="tags">
+
+                <span class="tag">React</span>
+                <span class="tag">Angular</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-card skill-item backend">
+
+            <h3>Data & Messaging</h3>
+
+            <div class="tags">
+
+                <span class="tag">MySQL</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Redis</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">Kafka</span>
+                <span class="tag">RabbitMQ</span>
+                <span class="tag">Apache Spark</span>
+                <span class="tag">BigQuery</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="projects">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Selected Work
+        </div>
+
+        <h2 class="section-title">
+            Projects
+        </h2>
+
+        <p class="section-description">
+
+            A collection of AI, machine learning,
+            full-stack and distributed systems projects.
+
+        </p>
+
+    </div>
+
+
+    <div class="project-controls">
+
+        <div class="filters">
+
+            <button class="filter-btn active"
+                    data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="ai">
+                AI / ML
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="rag">
+                RAG
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="fullstack">
+                Full Stack
+            </button>
+
+            <button class="filter-btn"
+                    data-filter="transformer">
+                Transformers
+            </button>
+
+        </div>
+
+
+        <input
+            type="text"
+            id="projectSearch"
+            class="search-box"
+            placeholder="Search projects..."
+        />
+
+    </div>
+
+
+    <div class="projects-grid" id="projectGrid">
+
+
+        <!-- 1 -->
+
+        <article class="project-card"
+                 data-category="transformer ai"
+                 data-name="text generation transformer">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ✦
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Text Generation Transformer
+                </h3>
+
+                <p>
+                    Decoder-only Transformer model for
+                    text generation across multiple topics.
+                    The trained model is hosted on Hugging Face.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Transformer</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Hugging Face</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://huggingface.co/spaces/rav39439/text_generation_transformer"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 2 -->
+
+        <article class="project-card"
+                 data-category="rag ai"
+                 data-name="document question answering">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ◈
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Document Q&A
+                </h3>
+
+                <p>
+                    RAG-based application that preprocesses
+                    documents and answers questions using
+                    document-specific context.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">RAG</span>
+                    <span class="tag">LLM</span>
+                    <span class="tag">Vector DB</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://chatbotfordocuments.netlify.app/"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439/chatbotprojectbackend"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 3 -->
+
+        <article class="project-card"
+                 data-category="fullstack"
+                 data-name="movie application">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Movie Application
+                </h3>
+
+                <p>
+                    Full-stack movie application with
+                    React/Redux frontend and FastAPI backend,
+                    including user session state management.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">React</span>
+                    <span class="tag">Redux</span>
+                    <span class="tag">FastAPI</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://watchlistmovieapp.netlify.app/"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439/ReactJSAssignment"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 4 -->
+
+        <article class="project-card"
+                 data-category="fullstack"
+                 data-name="task manager">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ✓
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Task Manager
+                </h3>
+
+                <p>
+                    Task management platform for creating
+                    projects, tracking tasks and updating
+                    task progress.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">React</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">REST API</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://app.netlify.com/projects/taskmanagerforusers/"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439/taskmangerAPi"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 5 -->
+
+        <article class="project-card"
+                 data-category="fullstack"
+                 data-name="airbnb">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ⌂
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Airbnb Application
+                </h3>
+
+                <p>
+                    Airbnb-inspired property platform for
+                    registering flats, villas and apartments.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">JavaScript</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://app.netlify.com/projects/ahfdklajhdfhagkjgahajh/"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439/airbnb-frontend"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 6 -->
+
+        <article class="project-card"
+                 data-category="fullstack"
+                 data-name="college course management">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    🎓
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    College Course Management
+                </h3>
+
+                <p>
+                    Academic management platform handling
+                    students, teachers, courses, assignments
+                    and academic records.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Java</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Angular</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://collegecoursemanagement.netlify.app/"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439/Collegemanagement"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 7 -->
+
+        <article class="project-card"
+                 data-category="fullstack ai"
+                 data-name="stack overflow clone">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ?
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Stack Overflow Clone
+                </h3>
+
+                <p>
+                    Q&A platform with question posting,
+                    expert interaction, tag-based search,
+                    chatbot, OTP login and location features.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Chatbot</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://stackoverflowfrontend.netlify.app/"
+                    target="_blank">
+                        Live Demo ↗
+                    </a>
+
+                    <a
+                    href="https://github.com/rav39439/Stackoverflowclonefrontend"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 8 -->
+
+        <article class="project-card"
+                 data-category="transformer ai"
+                 data-name="context question answering fine tuning">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    AI
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Context Q&A Fine-Tuning
+                </h3>
+
+                <p>
+                    Decoder-only Transformer trained for
+                    context-based question answering using
+                    hundreds of thousands of context,
+                    question and answer samples.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Transformer</span>
+                    <span class="tag">Fine-Tuning</span>
+                    <span class="tag">NLP</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://github.com/rav39439/fine_tuning_models"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 9 -->
+
+        <article class="project-card"
+                 data-category="ai"
+                 data-name="image audio tokenizer">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ◉
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Image & Audio Tokenization
+                </h3>
+
+                <p>
+                    VQ-VAE based encoder architecture for
+                    converting images and audio into tokens
+                    suitable for Transformer-based generation.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">VQ-VAE</span>
+                    <span class="tag">Deep Learning</span>
+                    <span class="tag">Transformers</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://github.com/rav39439/image_tokenization_prediction_transformer"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 10 -->
+
+        <article class="project-card"
+                 data-category="ai"
+                 data-name="object state detection">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    ◎
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Object & State Detection
+                </h3>
+
+                <p>
+                    Image classification system using cloud
+                    storage and machine learning to predict
+                    image/object states as probabilities.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">ML</span>
+                    <span class="tag">GCP</span>
+                    <span class="tag">Computer Vision</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://github.com/rav39439/python-image-credit"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 11 -->
+
+        <article class="project-card"
+                 data-category="rag ai"
+                 data-name="rag question answering">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    R
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    RAG Question Answering
+                </h3>
+
+                <p>
+                    End-to-end RAG pipeline including document
+                    processing, chunking, embeddings, metadata,
+                    vector retrieval, reranking and LLM response.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">RAG</span>
+                    <span class="tag">Embeddings</span>
+                    <span class="tag">Reranking</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://github.com/rav39439/rag-chatbot-backend"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 12 -->
+
+        <article class="project-card"
+                 data-category="transformer ai"
+                 data-name="text summarization transformer">
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    Σ
+                </div>
+
+            </div>
+
+            <div class="project-body">
+
+                <h3>
+                    Text Summarization Transformer
+                </h3>
+
+                <p>
+                    Decoder-only Transformer trained for
+                    text summarization using a dataset containing
+                    approximately 500,000 text-summary samples.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Transformer</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">Deep Learning</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    <a
+                    href="https://github.com/rav39439/summarizer_transformer"
+                    target="_blank">
+                        GitHub ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= AI ARCHITECTURE ================= -->
+
+<section>
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Architecture
+        </div>
+
+        <h2 class="section-title">
+            How I Build AI Systems
+        </h2>
+
+        <p class="section-description">
+
+            Combining data engineering, machine learning,
+            LLM orchestration and scalable backend services.
+
+        </p>
+
+    </div>
+
+
+    <div class="architecture reveal">
+
+        <div class="flow">
+
+            <div class="flow-box">
+
+                <strong>Data</strong>
+
+                <span>
+                    Telemetry / Documents
+                </span>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+
+                <strong>Processing</strong>
+
+                <span>
+                    Spark / Kafka / Beam
+                </span>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+
+                <strong>ML / RAG</strong>
+
+                <span>
+                    Models / Embeddings
+                </span>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+
+                <strong>LLM Agents</strong>
+
+                <span>
+                    LangGraph / RAG
+                </span>
+
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+
+                <strong>API</strong>
+
+                <span>
+                    FastAPI / Microservices
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+    <div class="contact reveal">
+
+        <div class="section-label">
+            Let's Connect
+        </div>
+
+        <h2>
+            Have an interesting
+            problem to solve?
+        </h2>
+
+        <p>
+
+            I'm interested in AI/ML engineering,
+            Generative AI, backend systems,
+            intelligent applications and challenging
+            engineering problems.
+
+        </p>
+
+        <div class="hero-buttons"
+             style="justify-content:center;">
+
+            <a
+            href="https://github.com/rav39439"
+            target="_blank"
+            class="btn btn-primary">
+
+                GitHub ↗
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+        © 2026 Ravc Kumar
+    </div>
+
+    <div>
+        AI · ML · GenAI · Backend · Full Stack
+    </div>
+
+</footer>
+
+
+<script>
+
+/* ================= MOBILE NAV ================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+});
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+
+    });
+
+});
+
+
+/* ================= SKILL FILTER ================= */
+
+const skillTabs =
+    document.querySelectorAll(".skill-tab");
+
+const skillCards =
+    document.querySelectorAll(".skill-item");
+
+
+skillTabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        skillTabs.forEach(t =>
+            t.classList.remove("active")
+        );
+
+        tab.classList.add("active");
+
+        const category =
+            tab.dataset.skill;
+
+        skillCards.forEach(card => {
+
+            if (
+                category === "all" ||
+                card.classList.contains(category)
+            ) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
         });
 
-        // Optionally, display the additional message (messegeg)
-        if (response.messegeg) {
-          messageContainer.innerHTML += `
-                <small class="d-block text-right mt-3 text-muted">${response.messegeg}</small>
-              `;
-        }
-      },
-      error: function (error) {
-        console.error("Error fetching messages:", error);
-      },
     });
-  }
 
-  // Load messages when the page loads
-  $(document).ready(function () {
-    loadMessages();
-  });
+});
 
 
-  $("#setSession").on("submit", function (e) {
-    e.preventDefault();
-    formData={}
-    username = prompt('Enter your username')
-    organization = prompt('Enter your organization')
-    console.log(username)
-    if(username!='' && username!==null && organization!=='' && organization!==null){
-      document.getElementById("myform").style.display = "block";
-      document.getElementById("setSession").style.display = "none";
-      document.getElementById("terminate").style.display = "block";
-    }
-    else{
-      document.getElementById("custommessage").innerHTML = "Please enter your details to continue";
-    }
-    
-    $.ajax({
-      type: "POST",
-      url: 'https://portfolioapi-1yt6.onrender.com/setUserSession',
-      data: formData,
-      success: function (response) {
+/* ================= PROJECT FILTER ================= */
 
-       
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
 
-      }
-    })
-  })
+const projectCards =
+    document.querySelectorAll(".project-card");
+
+const searchBox =
+    document.getElementById("projectSearch");
+
+let currentFilter = "all";
 
 
-  $("#myform").on("submit", function (e) {
-    e.preventDefault();
+filterButtons.forEach(button => {
 
-    var formData = {
-      comment: $("#message").val(),
-      username: username,
-      organization: organization
-    };
+    button.addEventListener("click", () => {
 
-    $.ajax({
-      type: "POST",
-      url: 'https://portfolioapi-1yt6.onrender.com/myprofile/sendmessage',
-      data: formData,
-      success: function (response) {
-        // Redirect based on response.comment or update messages
+        filterButtons.forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-        let html = `
-                <div class="media text-muted pt-3">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="mr-2 rounded" width="32" height="32">
-                  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">${response.username}</strong>
-                    ${response.comment}
-                  </p>
-                </div>`;
-        document.getElementById('mymessages').innerHTML += html;
-        document.getElementById('message').innerText = "";
-      }
-    })
-  })
+        button.classList.add("active");
+
+        currentFilter =
+            button.dataset.filter;
+
+        filterProjects();
+
+    });
+
+});
 
 
-  let hj = document.getElementById("newmessage") ? document.getElementById("newmessage").innerText : "";
-  if (hj) {
-    setTimeout(() => {
-      document.getElementById("messagebody").innerHTML = "";
-    }, 6000);
-  }
+/* ================= PROJECT SEARCH ================= */
 
-  $("#terminate").on("click", function (e) {
-    username = ""
-    organization = ""
-    document.getElementById("terminate").style.display = "none";
+searchBox.addEventListener("input", () => {
 
-    document.getElementById("myform").style.display = "none";
-    document.getElementById("setSession").style.display = "block";
+    filterProjects();
 
-  })
+});
+
+
+function filterProjects() {
+
+    const search =
+        searchBox.value.toLowerCase();
+
+    projectCards.forEach(card => {
+
+        const categories =
+            card.dataset.category;
+
+        const name =
+            card.dataset.name.toLowerCase();
+
+        const filterMatch =
+            currentFilter === "all" ||
+            categories.includes(currentFilter);
+
+        const searchMatch =
+            name.includes(search);
+
+        if (filterMatch && searchMatch) {
+
+            card.classList.remove("hidden");
+
+        } else {
+
+            card.classList.add("hidden");
+
+        }
+
+    });
+
+}
+
+
+/* ================= SCROLL REVEAL ================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .12
+        }
+    );
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element => {
+
+    observer.observe(element);
+
+});
+
+
+/* ================= ACTIVE NAV ================= */
+
+const sections =
+    document.querySelectorAll("section[id]");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop =
+            section.offsetTop - 150;
+
+        if (
+            window.scrollY >= sectionTop
+        ) {
+
+            current =
+                section.getAttribute("id");
+
+        }
+
+    });
+
+    document
+    .querySelectorAll(".nav-links a")
+    .forEach(link => {
+
+        link.style.color = "";
+
+        if (
+            link.getAttribute("href")
+            === "#" + current
+        ) {
+
+            link.style.color = "white";
+
+        }
+
+    });
+
+});
+
 </script>
 
 </body>
-
-</html>
-
-
 </html>
